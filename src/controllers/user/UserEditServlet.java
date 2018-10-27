@@ -31,6 +31,8 @@ public class UserEditServlet extends HttpServlet {
 	    em.close();
 	    //Userインスタンスをリクエストオブジェクトに格納
 	    request.setAttribute("user", user);
+	    //Userのidをセッションオブジェクトに格納
+	    request.getSession().setAttribute("user_id", user.getId());
 	    //edit.jspへ移動
 	    RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/users/edit.jsp");
 	    rd.forward(request, response);
