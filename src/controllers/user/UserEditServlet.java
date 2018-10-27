@@ -13,26 +13,30 @@ import javax.servlet.http.HttpServletResponse;
 import models.User;
 import utils.DBUtil;
 
-@WebServlet("/users/show")
-public class UserShowServlet extends HttpServlet {
+@WebServlet("/users/edit")
+public class UserEditServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public UserShowServlet() {
+    public UserEditServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-	    //EntityManagerを生成
+	    //エンティティマネージャを生成
 	    EntityManager em = DBUtil.createEntityManger();
-	    //パラメータから取得したidの値で検索した結果を取得
+	    //パラメータから取得したIDの値で検索した結果を取得
 	    User user = em.find(User.class, Integer.parseInt(request.getParameter("id")));
 	    //エンティティマネージャを終了
 	    em.close();
-	    //検索結果のuserをリクエストオブジェクトに格納
+	    //Userインスタンスをリクエストオブジェクトに格納
 	    request.setAttribute("user", user);
-	    //show.jspに移動
-	    RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/users/show.jsp");
+	    //edit.jspへ移動
+	    RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/users/edit.jsp");
 	    rd.forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
 	}
 }
