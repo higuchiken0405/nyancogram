@@ -18,7 +18,11 @@ import javax.persistence.Table;
             //全てのユーザー情報を取得
             name="getAllUsers",
             query="SELECT u FROM User AS u ORDER BY u.name ASC"
-
+    ),
+    @NamedQuery(
+            //ログイン時にメールアドレスとパスワードをチェック
+            name="checkLoginMailAndPass",
+            query="SELECT u FROM User AS u WHERE u.email = :email AND u.password = :password"
     )
 })
 @Table(name = "users")
