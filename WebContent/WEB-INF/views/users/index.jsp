@@ -9,7 +9,7 @@
                 <span><c:out value="${user.name}" /></span>
                 <span><c:out value="${user.email}" /></span>
                 <span><c:out value="${user.password}" /></span>
-                <span><a href="<c:url value='/users/show?id=${id}' />">詳細へ</a></span>
+                <span><a href="<c:url value='/users/show?id=${user.id}' />">詳細へ</a></span>
             </li>
         </c:forEach>
     </c:param>
