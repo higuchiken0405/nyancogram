@@ -26,10 +26,6 @@ public class DBUtill {
             emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         }
         return emf;
-
-
-
-
     }
 
 
