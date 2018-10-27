@@ -12,7 +12,7 @@
                 にゃんこグラム
             </header>
             <div class="content">
-                {param.content}
+                ${param.content}
             </div>
             <footer>
                 <p>copyright</p>
