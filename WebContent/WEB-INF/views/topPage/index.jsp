@@ -14,7 +14,7 @@
                 </div>
 
                 <div class="signup_button">
-                    <a href ="#" class="toppage_button">Sign up</a>
+                    <a href ="<c:url value='/signup' />" class="toppage_button">Sign up</a>
                 </div>
             </li>
         </ul>
