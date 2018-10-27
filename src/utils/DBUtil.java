@@ -4,8 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class DBUtill {
-
+public class DBUtil {
     //永続化ユニット名の設定
     private static final String PERSISTENCE_UNIT_NAME = "nyancogram";
     //エンティティマネージャファクトリの定義
@@ -27,7 +26,4 @@ public class DBUtill {
         }
         return emf;
     }
-
-
-
 }
