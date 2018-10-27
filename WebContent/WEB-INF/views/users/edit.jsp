@@ -17,5 +17,6 @@
             </div>
             <button type="submit">Update</button>
         </form>
+        <p><a href="<c:url value='/users/show?id=${user.id}'/>">ユーザー詳細ページへ戻る</a></p>
     </c:param>
 </c:import>
