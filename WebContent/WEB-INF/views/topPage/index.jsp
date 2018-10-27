@@ -1,11 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <title>Insert title here</title>
-    </head>
-    <body>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:import url="../layout/app.jsp">
+    <c:param name="content">
+    <h2 class="toppage">Welcome to Nyancogram</h2>
+    <p class="toppagemsg">This is an application for the cat owner.</p>
 
-    </body>
-</html>
+
+    <div class="index_button">
+        <ul>
+            <li>
+                <div class="login_button">
+                    <a href ="#" class="toppage_button">Log in</a>
+                </div>
+
+                <div class="signup_button">
+                    <a href ="#" class="toppage_button">Sign up</a>
+                </div>
+            </li>
+        </ul>
+        </div>
+    </c:param>
+</c:import>
+
+
