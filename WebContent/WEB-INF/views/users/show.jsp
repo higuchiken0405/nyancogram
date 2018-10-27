@@ -14,6 +14,7 @@
                <span>パスワード</span><span><c:out value="${user.password}" /></span>
            </li>
        </ul>
+       <p><a href="<c:url value='/users/edit?id=${user.id}'/>">ユーザー情報を編集する</a></p>
        <p><a href="<c:url value='/users/index'/>">一覧に戻る</a></p>
     </c:param>
 </c:import>
