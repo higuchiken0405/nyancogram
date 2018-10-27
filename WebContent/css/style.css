@@ -2,19 +2,19 @@
 
 
 html {
-	height:100%
+	height: 100%
 }
 body {
-	height:100%;
+	height: 100%;
 	background-image: url("../images/toppage.png");
-    background-size:100% auto;
+    background-size: 100% auto;
+    margin: 0;
 }
-
-
 #wrapper {
+	height: 100%;
+    margin: 0px auto;
     text-align: center;
 }
-
 h2.toppage {
     padding-top: 100px;
     color: white;
