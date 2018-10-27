@@ -10,7 +10,7 @@
         <ul>
             <li>
                 <div class="login_button">
-                    <a href ="#" class="toppage_button">Log in</a>
+                    <a href ="<c:url value='/login' />" class="toppage_button">Log in</a>
                 </div>
 
                 <div class="signup_button">
