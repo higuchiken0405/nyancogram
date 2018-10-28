@@ -33,32 +33,42 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Integer id;
-
-
+    //名前
     @Column(name="name", nullable=false)
     private String name;
 
-    @Column(name="password", nullable=false, length=64)
-    private String password;
+    //性別　0:♂　1:♀
+    @Column(name="gender", nullable=false)
+    private int gender;
 
+    //生息地域
+    @Column(name="area", nullable=false)
+    private String area;
+
+    //アイコン画像名
+    @Column(name="icon", nullable=false)
+    private String icon;
+
+    //メールアドレス
     @Column(name="email", nullable=false, unique=true)
     private String email;
 
-    @Column(name="icon_url")
-    private String icon_url;
+    //パスワード
+    @Column(name="password", nullable=false, length=64)
+    private String password;
 
+    //生成日時
     @Column(name="created_at", nullable=false)
     private Timestamp created_at;
 
+    //更新日時
     @Column(name="updated_at", nullable=false)
     private Timestamp updated_at;
-
 
     //ゲッター・セッター
     public Integer getId() {
         return id;
     }
-
     public void setId(Integer id) {
         this.id = id;
     }
@@ -66,39 +76,48 @@ public class User {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getPassword() {
-        return password;
+    public int getGender() {
+        return gender;
+    }
+    public void setGender(int gender) {
+        this.gender = gender;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public String getArea() {
+        return area;
+    }
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public String getIcon_url() {
-        return icon_url;
+    public String getPassword() {
+        return password;
     }
-
-    public void setIcon_url(String icon_url) {
-        this.icon_url = icon_url;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Timestamp getCreated_at() {
         return created_at;
     }
-
     public void setCreated_at(Timestamp created_at) {
         this.created_at = created_at;
     }
@@ -106,7 +125,6 @@ public class User {
     public Timestamp getUpdated_at() {
         return updated_at;
     }
-
     public void setUpdated_at(Timestamp updated_at) {
         this.updated_at = updated_at;
     }
