@@ -18,6 +18,8 @@ build/
 # OS Files
 Thumbs.db
 .DS_Store
+# Uploaded image
+*.jpg
 
 # Application Properties
 WebContent/META-INF/application.properties
