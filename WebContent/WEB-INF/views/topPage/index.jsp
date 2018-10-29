@@ -5,6 +5,6 @@
         <c:import url="_loginSignup.jsp" />
     </c:when>
     <c:otherwise>
-        <c:import url="_loginSignup.jsp" />
+        <c:import url="_main.jsp" />
     </c:otherwise>
 </c:choose>
