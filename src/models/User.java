@@ -46,7 +46,7 @@ public class User {
     private String area;
 
     //アイコン画像名
-    @Column(name="icon", nullable=false)
+    @Column(name="icon")
     private String icon;
 
     //メールアドレス
