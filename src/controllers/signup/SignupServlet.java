@@ -37,13 +37,18 @@ public class SignupServlet extends HttpServlet {
 	    EntityManager em = DBUtil.createEntityManger();
 	    //パラメータの値を取得
 	    String name = request.getParameter("name");
+	    Integer gender = Integer.parseInt(request.getParameter("gender"));
+	    String[] area_array = request.getParameter("area").split("");
+	    String area = area_array[0];
 	    String email = request.getParameter("email");
 	    String password = request.getParameter("password");
 
 	    //Userクラスのインスタンス化
 	    User user = new User();
-	    //パラメータから取得した値を、名前・メールアドレス・パスワードにセット
+	    //パラメータから取得した値を、名前・性別・生息地域・メールアドレス・パスワードにセット
 	    user.setName(name);
+	    user.setGender(gender);
+	    user.setArea(area);
 	    user.setEmail(email);
 	    user.setPassword(password);
 

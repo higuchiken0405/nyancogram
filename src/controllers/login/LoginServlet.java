@@ -44,6 +44,7 @@ public class LoginServlet extends HttpServlet {
             EntityManager em = DBUtil.createEntityManger();
 
             try {
+                //「ログインするメールアドレスとパスワードのチェックする」クエリを実行した結果を格納
                 user = em.createNamedQuery("checkLoginMailAndPass", User.class)
                                             .setParameter("email", email)
                                             .setParameter("password", password)
@@ -67,7 +68,7 @@ public class LoginServlet extends HttpServlet {
             rd.forward(request, response);
         } else {
             //チェック結果がtrueの時
-            //セッションオブジェクトにメールアドレスとパスワードが一致するUserインスタンを
+            //セッションオブジェクトにメールアドレスとパスワードが一致するUserインスタンスを
             //ログインユーザーとして格納
             request.getSession().setAttribute("login_user", user);
             //ユーザー詳細ページへ移動
