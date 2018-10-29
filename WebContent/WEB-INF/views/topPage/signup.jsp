@@ -7,6 +7,15 @@
                 <label for="name">名前：</label>
                 <input type="text" name="name" value="${user.name}" />
             </div>
+           <div class="form_part">
+                <label for="gender">性別：</label>
+                <input type="radio" name="gender" value="0" checked/>♂
+                <input type="radio" name="gender" value="1" />♀
+            </div>
+            <div class="form_part">
+                <label for="area">生息地域：</label>
+                <c:import url="_area.jsp" />
+            </div>
             <div class="form_part">
                 <label for="email">メールアドレス：</label>
                 <input type="text" name="email" value="${user.email}"/>
