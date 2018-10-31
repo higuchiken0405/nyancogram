@@ -15,10 +15,6 @@
             <div class="content">
                 ${param.content}
             </div>
-            <footer>
-                <p>copyright</p>
-            </footer>
-
         </div>
     </body>
 </html>
