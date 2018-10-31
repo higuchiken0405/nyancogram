@@ -4,8 +4,6 @@
     <c:param name="content">
     <h2 class="toppage">Welcome to Nyancogram</h2>
     <p class="toppagemsg">This is an application for the cat .</p>
-
-
     <div class="index_button">
         <ul>
             <li>

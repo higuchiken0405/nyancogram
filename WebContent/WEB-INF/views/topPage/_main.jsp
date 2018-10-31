@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="../layout/app.jsp">
     <c:param name="content">
-        <div class="container_main clearfix">
+        <div class="container container_main clearfix">
             <aside class="aside_main">
                 <img src="uploaded/default.jpg" class="user_icon"><br>
                 <p><c:out value="${sessionScope.login_user.name}"/>さん&ensp;<span class="${sessionScope.login_user.gender}"><c:out value="${sessionScope.login_user.gender}" /></span></p>
