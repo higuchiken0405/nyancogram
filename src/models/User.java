@@ -21,6 +21,7 @@ import javax.persistence.Table;
     ),
     @NamedQuery(
             //ログイン時にメールアドレスとパスワードをチェック
+            //(セットした値のメールアドレスとパスワードを持つユーザーを取得)
             name="checkLoginMailAndPass",
             query="SELECT u FROM User AS u WHERE u.email = :email AND u.password = :password"
     )
@@ -37,9 +38,9 @@ public class User {
     @Column(name="name", nullable=false)
     private String name;
 
-    //性別　0:♂　1:♀
+    //性別
     @Column(name="gender", nullable=false)
-    private int gender;
+    private String gender;
 
     //生息地域
     @Column(name="area", nullable=false)
@@ -80,10 +81,10 @@ public class User {
         this.name = name;
     }
 
-    public int getGender() {
+    public String getGender() {
         return gender;
     }
-    public void setGender(int gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
