@@ -36,15 +36,16 @@ public class LoginServlet extends HttpServlet {
 	    //パラメータを取得
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        //
+        //userを初期化
         User user = null;
 
         if(email != null && !email.equals("") && password != null && !password.equals("")) {
+            //パラメータがnullか空ではない時
             //エンティティマネージャの生成
             EntityManager em = DBUtil.createEntityManger();
 
             try {
-                //「ログインするメールアドレスとパスワードのチェックする」クエリを実行した結果を格納
+                //「セットした値のメールアドレスとパスワードを持つユーザーを取得」クエリを実行した結果を格納
                 user = em.createNamedQuery("checkLoginMailAndPass", User.class)
                                             .setParameter("email", email)
                                             .setParameter("password", password)
@@ -55,14 +56,14 @@ public class LoginServlet extends HttpServlet {
             em.close();
 
             if(user != null) {
-                //Userインスタンスがnull出ない時
+                //Userインスタンスがnullではない時
                 //チェック結果をtrue
                 check_result = true;
             }
         }
 
         if(!check_result) {
-            //チェック結果がtrueではない時
+            //チェック結果がtrueではない時(Userインスタンスがnullの時)
             //login.jspに戻る
             RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/views/login.jsp");
             rd.forward(request, response);
@@ -72,7 +73,8 @@ public class LoginServlet extends HttpServlet {
             //ログインユーザーとして格納
             request.getSession().setAttribute("login_user", user);
             //ユーザー詳細ページへ移動
-            response.sendRedirect(request.getContextPath() + "/users/show?id=" + user.getId());
+            //response.sendRedirect(request.getContextPath() + "/users/show?id=" + user.getId());
+            response.sendRedirect(request.getContextPath() + "/");
         }
 
 	}
