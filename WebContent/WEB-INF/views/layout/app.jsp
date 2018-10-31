@@ -10,7 +10,7 @@
     <body>
         <div id="wrapper">
             <header>
-                にゃんこグラム
+                Nyancogram
             </header>
             <div class="content">
                 ${param.content}
