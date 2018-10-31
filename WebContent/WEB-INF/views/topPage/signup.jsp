@@ -9,8 +9,8 @@
             </div>
            <div class="form_part">
                 <label for="gender">性別：</label>
-                <input type="radio" name="gender" value="0" checked/>♂
-                <input type="radio" name="gender" value="1" />♀
+                <input type="radio" name="gender" value="♂" checked/>♂
+                <input type="radio" name="gender" value="♀" />♀
             </div>
             <div class="form_part">
                 <label for="area">生息地域：</label>
