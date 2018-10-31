@@ -37,9 +37,9 @@ public class SignupServlet extends HttpServlet {
 	    EntityManager em = DBUtil.createEntityManger();
 	    //パラメータの値を取得
 	    String name = request.getParameter("name");
-	    Integer gender = Integer.parseInt(request.getParameter("gender"));
-	    String[] area_array = request.getParameter("area").split("");
-	    String area = area_array[0];
+	    String gender = request.getParameter("gender");
+	    String area_str = request.getParameter("area");
+	    String area = area_str.substring(area_str.indexOf("　"));
 	    String email = request.getParameter("email");
 	    String password = request.getParameter("password");
 
@@ -75,9 +75,9 @@ public class SignupServlet extends HttpServlet {
             em.persist(user);
             em.getTransaction().commit();
             em.close();
-            //
-            RequestDispatcher rd = request.getRequestDispatcher("/users/index");
-            rd.forward(request, response);
+            request.getSession().setAttribute("login_user", user);
+            //ユーザー詳細ページへ移動
+            response.sendRedirect(request.getContextPath() + "/");
         }
 	}
 
