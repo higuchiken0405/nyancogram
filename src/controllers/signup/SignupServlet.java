@@ -39,7 +39,7 @@ public class SignupServlet extends HttpServlet {
 	    String name = request.getParameter("name");
 	    String gender = request.getParameter("gender");
 	    String area_str = request.getParameter("area");
-	    String area = area_str.substring(area_str.indexOf("　"));
+	    String area = area_str.substring(area_str.indexOf("　") + 1);
 	    String email = request.getParameter("email");
 	    String password = request.getParameter("password");
 
