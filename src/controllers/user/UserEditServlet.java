@@ -25,10 +25,30 @@ public class UserEditServlet extends HttpServlet {
 
 	    //エンティティマネージャを生成
 	    EntityManager em = DBUtil.createEntityManger();
-	    //パラメータから取得したIDの値で検索した結果を取得
-	    User user = em.find(User.class, Integer.parseInt(request.getParameter("id")));
+        //パラメータからユーザーIDを取得
+        Integer user_id = Integer.parseInt(request.getParameter("id"));
+        //セッションオブジェクトからログインユーザーのIDを取得
+        User login_user = (User) request.getSession().getAttribute("login_user");
+        Integer login_user_id = login_user.getId();
+
+        if(user_id != login_user_id) {
+            //パラメータのIDとログインユーザーのIDが一致しない時
+            //ログインユーザーの編集ページへリダイレクト
+            response.sendRedirect(request.getContextPath() + "/users/edit?id=" + login_user_id);
+            return;
+        }
+
+        //パラメータから取得したIDで検索した結果を格納
+	    User user = em.find(User.class, user_id);
 	    //エンティティマネージャを終了
 	    em.close();
+
+	    if(user == null) {
+            //検索結果のuserがnullの時
+            //ログインユーザーの編集ページへリダイレクト
+            response.sendRedirect(request.getContextPath() + "/users/edit?id=" + login_user_id);
+            return;
+	    }
 	    //Userインスタンスをリクエストオブジェクトに格納
 	    request.setAttribute("user", user);
 	    //Userのidをセッションオブジェクトに格納
