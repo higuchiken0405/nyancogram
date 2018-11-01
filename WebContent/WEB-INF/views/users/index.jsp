@@ -12,7 +12,7 @@
             <li>
                 <a href="<c:url value='/users/show?id=${user.id}' />" class="users_idex_link">
                     <span class="users_index">
-                        <img src="<c:url  value='/uploaded/${user.icon}'/>" class="users_index_icon">
+                        <img src="<c:url  value='/icon/${user.icon}'/>" class="users_index_icon">
                         <c:out value="${user.name}" />&nbsp;さん
                     </span>
                     <c:choose>
