@@ -2,15 +2,33 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="../layout/app.jsp">
     <c:param name="content">
-        <h2>ユーザー一覧</h2>
+    <div class="container container_users_index clearfix">
+            <aside class="aside">
+                <c:import url="../topPage/_aside.jsp" />
+            </aside>
+        <section class="section clearfix">
         <c:forEach var="user" items="${users}" >
+            <c:if test="${user.id != sessionScope.login_user.id}">
             <li>
-                <span><c:out value="${user.id}" /></span>
-                <span><c:out value="${user.name}" /></span>
-                <span><c:out value="${user.email}" /></span>
-                <span><c:out value="${user.password}" /></span>
-                <span><a href="<c:url value='/users/show?id=${user.id}' />">詳細へ</a></span>
+                <a href="<c:url value='/users/show?id=${user.id}' />" class="users_idex_link">
+                    <span class="users_index">
+                        <img src="<c:url  value='/uploaded/${user.icon}'/>" class="users_index_icon">
+                        <c:out value="${user.name}" />&nbsp;さん
+                    </span>
+                    <c:choose>
+                        <c:when test="${user.gender == '♂'}">
+                            <span class="users_index gender_male"><c:out value="${user.gender}" /> </span>
+                        </c:when>
+                        <c:otherwise>
+                            <span class="users_index gender_female"><c:out value="${user.gender}" /></span>
+                        </c:otherwise>
+                    </c:choose>
+                    <span class="users_index">生息地域 : <c:out value="${user.area}" /></span>
+                </a>
             </li>
+            </c:if>
         </c:forEach>
+        </section>
+    </div>
     </c:param>
 </c:import>
