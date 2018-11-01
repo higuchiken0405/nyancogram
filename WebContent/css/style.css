@@ -36,6 +36,48 @@ header {
     padding-left: 15%;
 }
 
+/* aside・section設定 */
+aside.aside {
+    float: left;
+    width: 20%;
+    margin-left: 20px;
+    border-right: 1px solid #7F7F7F;
+    padding-right: 40px;
+}
+section.section {
+    float: left;
+    width: 60%;
+    margin-left: 30px;
+}
+.clearfix:after {
+    clear: both;
+    content: '';
+    display: block;
+}
+
+a.to_users_edit {
+	text-decoration: none;
+	color: rgba(30, 30, 30, 1);
+	border: 1px solid rgba(30, 30, 30, 1);
+	font-size: 80%;
+	padding: 10px 15px 10px 15px;
+	width: 80%;
+}
+a.to_users_edit:hover {
+    text-decoration: none;
+    color: rgba(240, 240, 240, 0.8);
+    background-color: rgba(30, 30, 30, 1);
+    font-size: 80%;
+    padding: 10px 15px 10px 15px;
+}
+/* asideのアイコン画像 */
+img.user_icon {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 10px;
+}
 /* トップページ設定 */
 h2.toppage {
     padding-top: 100px;
@@ -82,26 +124,65 @@ p.toppagemsg {
 	padding-top: 50px;
 	height: 100%;
 }
-aside.aside_main {
-    float: left;
-    width: 20%;
-    margin-left: 20px;
+
+
+/* ユーザー一覧へのボタン */
+.users_index {
+	text-align: right;
 }
-section.section_main {
-    float: left;
-    width: 70%;
-    margin-left: 30px;
+a.users_index_button {
+	border: 1px solid rgba(30, 30, 30, 1);
+    border-radius: 2px;
+	padding : 15px 20px 15px 20px;
+	text-decoration: none;
+	color: rgba(30, 30, 30, 1);
 }
-.clearfix:after {
-    clear: both;
-    content: '';
+a.users_index_button:hover {
+    border: 1px solid rgba(240, 240, 240, 1);
+    border-radius: 2px;
+    padding : 15px 20px 15px 20px;
+    color: rgba(240, 240, 240, 1);
+    background-color: rgba(30, 30, 30, 1);
+}
+
+/* ユーザー一覧画面 */
+.container_users_index {
+    padding-top: 50px;
+    height: 100%;
+}
+
+.container_users_index li {
+	list-style-type: none;
+	text-align: left;
+	margin-left: 50px;
+	margin-top: 10px;
+	border-bottom: 1px solid #cccccc;
+}
+.container_users_index li:hover {
+    border-bottom: 1px solid #656565;
+}
+img.users_index_icon {
+    border-radius: 10px;
+	width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+
+span.users_index {
+	margin-left: 10px;
+}
+a.users_idex_link {
+    text-decoration: none;
+    color: rgba(30, 30, 30, 1);
     display: block;
 }
-img.user_icon {
-	width: 180px;
-	height: 180px;
-	object-fit: cover;
-	border-radius: 15px;
+span.gender_male {
+	color: #0065cb;
+	font-weight: bold;
+    font-size: 120%;
 }
-
-
+span.gender_female {
+	color: #ff007f;
+	font-weight: bold;
+	font-size: 120%;
+}
