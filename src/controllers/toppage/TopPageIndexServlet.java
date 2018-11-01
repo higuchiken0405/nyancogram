@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.User;
-
 @WebServlet("/index.html")
 public class TopPageIndexServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -21,8 +19,6 @@ public class TopPageIndexServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-	    //セッションオブジェクトからログインユーザー情報を取得
-	    User user = (User) request.getSession().getAttribute("login_user");
 
 	    //toppageのindex.jspへ移動
 	    RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/topPage/index.jsp");
