@@ -2,11 +2,25 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="../layout/app.jsp">
     <c:param name="content">
-        <div class="container container_edit">
+        <div class="container container_users_edit">
+
+        <form action="<c:url value='/users/icon'/>" method="POST" enctype="multipart/form-data">
+            <div class="form_part">
+                <img src="<c:url value='/icon/${sessionScope.login_user.icon}' />" class="user_icon"><br>
+                <label for="file"></label>
+                <input type="file" name="icon" accept="image/*">
+            </div>
+            <button type="submit">アイコン変更</button>
+        </form>
+
         <form action="<c:url value='/users/update'/>" method="post">
             <div class="form_part">
                 <label for="name">名前：</label>
                 <input type="text" name="name" value="${user.name}" />
+            </div>
+            <div class="form_part">
+                <label for="area">生息地域：</label>
+                <c:import url="../topPage/_area.jsp" />
             </div>
             <div class="form_part">
                 <label for="email">メールアドレス：</label>
