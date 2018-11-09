@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="../layout/app.jsp">
     <c:param name="content">
+        <div class="container container_main">
         <h2>ログイン</h2>
         <form action="<c:url value='/login'/>" method="POST">
             <div class="form_part">
@@ -14,5 +15,6 @@
             </div>
             <button type="submit">Log in</button>
         </form>
+        </div>
     </c:param>
 </c:import>
