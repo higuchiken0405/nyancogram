@@ -1,6 +1,7 @@
 package controllers.user;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.servlet.RequestDispatcher;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Post;
 import models.User;
 import utils.DBUtil;
 
@@ -38,19 +40,31 @@ public class UserShowServlet extends HttpServlet {
 	    }
 	    //パラメータから取得したIDで検索した結果を格納
 	    User user = em.find(User.class, user_id);
-	    //エンティティマネージャを終了
-	    em.close();
+
 
 	    if(user == null) {
 	        //検索結果がnullの時
+	        //エンティティマネージャを終了
+	        em.close();
             //ユーザー一覧へリダイレクト
             response.sendRedirect(request.getContextPath() + "/users/index");
             return;
 
 	    } else if (!user.equals(request.getSession().getAttribute("login_user"))) {
 	        //取得したuserがログインユーザーと一致しない場合
-	        //検索結果のuserをリクエストオブジェクトに格納
+
+            System.out.println("DBに接続");
+            //「詳細ページのユーザーが投稿したポストを全て取得する」クエリを実行した結果を格納
+            List<Post> posts = em.createNamedQuery("getAllMyPosts", Post.class)
+                                                        .setParameter("user_id", user.getId())
+                                                        .getResultList();
+	        //エンティティマネージャを終了
+	        em.close();
+
+	        //検索結果のuser、postsをリクエストオブジェクトに格納
 	        request.setAttribute("user", user);
+            request.setAttribute("posts", posts);
+
 	        //show.jspに移動
 	        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/users/show.jsp");
 	        rd.forward(request, response);
