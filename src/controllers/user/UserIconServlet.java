@@ -2,8 +2,6 @@ package controllers.user;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 
 import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
@@ -34,15 +32,17 @@ public class UserIconServlet extends HttpServlet {
 
 	    //フォームで送られたファイルを取得
         Part part = request.getPart("icon");
+        //セッションオブジェクトからユーザーID取得
         Integer user_id = (Integer) request.getSession().getAttribute("user_id");
-        if(part == null || part.equals("")) {
+        if(part.getSubmittedFileName() == null || part.getSubmittedFileName().equals("")) {
+            //送られたファイル名がnullか空の時、ユーザー情報編集画面へリダイレクト
             response.sendRedirect(request.getContextPath() + "/users/edit?id=" +  user_id);
             return;
         }
-        //現在時刻を取得し、指定したフォーマットの文字列に変換し、ファイル名に利用
-        Timestamp curret_time = new Timestamp(System.currentTimeMillis());
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
-        String name = sdf.format(curret_time) + ".jpg";
+        //セッションオブジェクトからログインユーザー情報を取得し、ユーザー名を画像名に使用
+        User loginUser = (User) request.getSession().getAttribute("login_user");
+        String userName = loginUser.getName();
+        String name = userName + ".jpg";
 
         //ファイルの書き込み
         try {
