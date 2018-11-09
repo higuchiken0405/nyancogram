@@ -19,10 +19,6 @@
                 <input type="text" name="name" value="${user.name}" />
             </div>
             <div class="form_part">
-                <label for="area">生息地域：</label>
-                <c:import url="../topPage/_area.jsp" />
-            </div>
-            <div class="form_part">
                 <label for="email">メールアドレス：</label>
                 <input type="text" name="email" value="${user.email}"/>
             </div>
