@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="../layout/app.jsp">
     <c:param name="content">
+        <div class="container container_main">
         <form action="signup" method="post">
             <div class="form_part">
                 <label for="name">名前：</label>
@@ -26,5 +27,6 @@
             </div>
             <button type="submit">Sign up</button>
         </form>
+        </div>
     </c:param>
 </c:import>
