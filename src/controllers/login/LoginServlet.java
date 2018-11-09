@@ -72,8 +72,7 @@ public class LoginServlet extends HttpServlet {
             //セッションオブジェクトにメールアドレスとパスワードが一致するUserインスタンスを
             //ログインユーザーとして格納
             request.getSession().setAttribute("login_user", user);
-            //ユーザー詳細ページへ移動
-            //response.sendRedirect(request.getContextPath() + "/users/show?id=" + user.getId());
+            //メインページへリダイレクト
             response.sendRedirect(request.getContextPath() + "/");
         }
 
