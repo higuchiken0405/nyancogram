@@ -7,16 +7,60 @@
                 <c:import url="_aside.jsp" />
             </aside>
             <section class="section">
-                <div class="users_index">
-                    <a href="<c:url value='/users/index' />" class="users_index_button">ユーザー一覧</a>
-                </div>
+                <ul class=main_button_list>
+                    <li>
+                    <div class="users_index">
+                        <a href="<c:url value='/users/index' />" class="users_index_button">登録猫一覧</a>
+                    </div>
+                    <div class="posts_index">
+                        <a href="<c:url value='/posts/index' />" class="posts_index_button">投稿一覧</a>
+                    </div>
+                    </li>
+                </ul>
                 <div class="my_posts_index">
                     <c:forEach var="post" items="${posts}">
-                        <div class="post-container">
-                            <h3 class="post_title"><c:out value="${post.title}" /></h3>
-                            <p><c:out value="${post.created_at}" /></p>
-                            <p class="post_conetnt"><c:out value="${post.content}" /></p>
-                            <p class="post_img"><c:out value="${post.image}" /></p>
+                        <div class="post_comment_container">
+                            <div class="post_container">
+                                <h3 class="post_title"><c:out value="${post.title}" /></h3>
+                                <p><c:out value="${post.created_at}" /></p>
+                                <c:forEach var="content" items="${post.content_array}" >
+                                    <p class="post_conetnt"><c:out value="${content}" /></p>
+                                </c:forEach>
+                                <c:if test="${post.image != null}" >
+                                    <img src="<c:url value='/uploaded/${post.image}'/>" class="post_img">
+                                </c:if>
+                                <ul class="post_icon_list">
+                                    <li>
+                                        <img src="<c:url value='/images/comment.png' />" class="comment_icon">
+                                        <img src="<c:url value='/images/heart.png' />" class="favorite_icon">
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="comment">
+                            <div class="comment_container">
+                                <c:forEach var="comment" items="${comments}" >
+                                    <c:if test="${comment.post.id == post.id}">
+                                        <ul>
+                                            <li>
+                                                <span><c:out value="${comment.user.name}" /> : </span>
+                                                <span><c:out value="${comment.body}" /></span>
+                                            </li>
+                                        </ul>
+                                    </c:if>
+                                </c:forEach>
+                            </div>
+                            <div class="comment_form_container">
+                                <form action="<c:url value='/comments/create' />" method="POST">
+                                    <div class="form_part">
+                                        <label for="body">コメント</label><br>
+                                        <input type="text" name="body" class="comment_form"></input>
+                                    </div><br>
+                                    <input  type="hidden" name="post_id" value="${post.id}">
+                                    <input  type="hidden" name="user_id" value="${user.id}">
+                                    <button type="submit" class="post_submit_button">投稿</button>
+                                </form>
+                            </div>
+                            </div>
                         </div>
                     </c:forEach>
                 </div>
@@ -24,3 +68,15 @@
        </div>
     </c:param>
 </c:import>
+<script>
+$(function(){
+    $(".post_form_button").on("click", function() {
+        $(".post_form_container").slideToggle();
+    });
+});
+$(function(){
+    $(".comment_icon").on("click", function() {
+        $(this).parents(".post_container").next().slideToggle();
+    });
+});
+</script>
