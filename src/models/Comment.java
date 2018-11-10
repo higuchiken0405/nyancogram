@@ -7,19 +7,25 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @NamedQueries ({
 
     @NamedQuery(
-            name="getPostAllComments",
-            query="SELECT c FROM Comment AS c Where c.post_id = :post_id"
-
+            name="getMyPostComments",
+            query="SELECT c FROM Comment AS c Where c.post.user.id = :user_id"
+            ),
+    @NamedQuery(
+            name="getAllComments",
+            query="SELECT c FROM Comment AS c ORDER BY c.id ASC"
             )
-
 })
 @Table(name="comments")
 public class Comment {
@@ -29,14 +35,20 @@ public class Comment {
     @Column(name="id")
     private Integer id;
 
+    @Lob
     @Column(name="body", length=140, nullable=false)
     private String body;
 
-    @Column(name="user_id", nullable=false)
-    private Integer user_id;
+    @Transient
+    private String[] body_array;
 
-    @Column(name="post_id", nullable=false)
-    private Integer post_id;
+    @ManyToOne
+    @JoinColumn(name="user_id", nullable=false)
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name="post_id", nullable=false)
+    private Post post;
 
     @Column(name="created_at", nullable=false)
     private Timestamp created_at;
@@ -61,20 +73,22 @@ public class Comment {
         this.body = body;
     }
 
-    public Integer getUser_id() {
-        return user_id;
+
+
+    public User getUser() {
+        return user;
     }
 
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Integer getPost_id() {
-        return post_id;
+    public Post getPost() {
+        return post;
     }
 
-    public void setPost_id(Integer post_id) {
-        this.post_id = post_id;
+    public void setPost(Post post) {
+        this.post = post;
     }
 
     public Timestamp getCreated_at() {
@@ -92,7 +106,13 @@ public class Comment {
     public void setUpdated_at(Timestamp updated_at) {
         this.updated_at = updated_at;
     }
+    public String[] getBody_array() {
+        return body_array;
+    }
 
+    public void setBody_array(String[] body_array) {
+        this.body_array = body_array;
+    }
 
 
 }
