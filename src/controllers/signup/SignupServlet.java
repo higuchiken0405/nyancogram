@@ -52,6 +52,12 @@ public class SignupServlet extends HttpServlet {
 	    user.setEmail(email);
 	    user.setPassword(password);
 
+	    if(gender.equals("♂")) {
+	        user.setIcon("default_male.png");
+	    } else {
+            user.setIcon("default_female.png");
+	    }
+
 	    //現在時刻を取得し、作成日時・更新日時にセット
 	    Timestamp current_time = new Timestamp(System.currentTimeMillis());
 	    user.setCreated_at(current_time);
