@@ -53,18 +53,22 @@
                             <div class="comment_container">
                                 <c:forEach var="comment" items="${comments}" >
                                     <c:if test="${comment.post.id == post.id}">
-                                        <ul class="comment_list">
-                                            <li>
-                                                <a href="<c:url value='/users/show?id=${comment.user.id}' />" class="post_index_comment_user" >
-                                                    <span>
-                                                        <img src="<c:url value='/icon/${comment.user.icon}' />" class="comment_user_icon">
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <a href="<c:url value='/users/show?id=${comment.user.id}'/>" class="post_index_comment_user">
+                                                        <img src="<c:url value='/icon/${comment.user.icon}'/>" class="comment_user_icon">
                                                         <c:out value="${comment.user.name}" />
-                                                        :
-                                                    </span>
-                                                </a>
-                                                <span><c:out value="${comment.body}" /></span>
-                                            </li>
-                                        </ul>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <p> : </p>
+                                                </td>
+                                                 <td class="post_index_comment_body">
+                                                   <p><c:out value="${comment.body}" /></p>
+                                                </td>
+                                            </tr>
+                                        </table>
                                     </c:if>
                                 </c:forEach>
                             </div>

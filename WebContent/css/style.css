@@ -193,13 +193,16 @@ p.toppagemsg {
     border: 2px solid white;
     padding: 11px 41px 11px 41px;
 }
-
-/* メイン画面*/
+/*************************
+******** メイン画面 **********
+**************************/
 .container_main {
 	padding-top: 50px;
 	height: 100%;
 }
-/* 投稿フォーム・投稿猫一覧・投稿一覧ボタンのリスト */
+/***********************************************************
+******** 投稿フォーム・投稿猫一覧・投稿一覧ボタンのリスト **********
+***********************************************************/
 .main_button_list {
     list-style: none;
     text-align: right;
@@ -300,6 +303,7 @@ a.users_index_button:hover {
     color: rgba(240, 240, 240, 1);
     background-color: rgba(30, 30, 30, 1);
 }
+
 /* 投稿一覧へのボタン */
 .posts_index {
     display:inline;
@@ -318,8 +322,9 @@ a.posts_index_button:hover {
     color: rgba(240, 240, 240, 1);
     background-color: rgba(30, 30, 30, 1);
 }
-
-/* メイン画面の自分が投稿したポスト一覧*/
+/*********************************************
+*****  メイン画面の自分が投稿したポスト一覧  ********
+***********************************************/
 .my_posts_index {
 	margin-top: 30px;
 }
@@ -381,7 +386,9 @@ img.favorite_icon:hover {
     font-size:20px;
 }
 
-/* ユーザー一覧画面 */
+/**********************
+*****  ユーザー一覧  ********
+**************************/
 .container_users_index {
     padding-top: 50px;
     height: 100%;
@@ -468,6 +475,9 @@ img.post_index_img {
 	max-height: 200px;
 	object-fit: cover;
 }
+/*************************
+****** コメント ***********
+**************************/
 ul.comment_list {
 	list-style: none;
 	text-align: left;
@@ -487,5 +497,9 @@ a.post_index_comment_user:hover {
     text-decoration: underline;
     color: blue;
     font-weight: bold;
+}
+td.post_index_comment_body {
+	text-align: left;
+	padding-left: 15px;
 }
 
