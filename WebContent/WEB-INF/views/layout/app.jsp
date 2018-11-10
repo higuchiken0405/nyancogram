@@ -10,8 +10,15 @@
     </head>
     <body>
         <div id="wrapper">
-            <header>
-                <a href="">Nyancogram</a>
+            <header class="clearfix">
+                <ul>
+                    <li>
+                        <h1 class="logo"><a href="<c:url value='/'/>">Nyancogram</a></h1>
+                        <c:if test="${sessionScope.login_user != null}">
+                            <span class="logout"><a href="<c:url value='/logout'/>">Log out</a></span>
+                        </c:if>
+                    </li>
+               </ul>
             </header>
             <div class="content">
                 ${param.content}
