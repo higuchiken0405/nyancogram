@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Comment;
 import models.Post;
+import models.StringToArray;
 import models.User;
 import utils.DBUtil;
 
@@ -34,13 +36,14 @@ public class UserShowServlet extends HttpServlet {
 	    Integer login_user_id = login_user.getId();
 	    if(user_id == login_user_id) {
 	        //パラーメータのIDとログインユーザーのIDが一致する時
+	        //エンティティマネージャを終了
+	        em.close();
 	        //メイン画面へリダイレクト
             response.sendRedirect(request.getContextPath() + "/");
             return;
 	    }
 	    //パラメータから取得したIDで検索した結果を格納
 	    User user = em.find(User.class, user_id);
-
 
 	    if(user == null) {
 	        //検索結果がnullの時
@@ -58,13 +61,31 @@ public class UserShowServlet extends HttpServlet {
             List<Post> posts = em.createNamedQuery("getAllMyPosts", Post.class)
                                                         .setParameter("user_id", user.getId())
                                                         .getResultList();
+            //「詳細ページのユーザーが投稿したポストのコメントを全て取得する」クエリを実行した結果を格納
+            List<Comment> comments = em.createNamedQuery("getMyPostComments", Comment.class)
+                                                        .setParameter("user_id", user.getId())
+                                                        .getResultList();
+
+
 	        //エンティティマネージャを終了
 	        em.close();
 
-	        //検索結果のuser、postsをリクエストオブジェクトに格納
+	        //文字列を改行で分けて配列に変換し、セットする
+	        if(posts != null) {
+	            for(Post post:posts) {
+	                post.setContent_array(StringToArray.contentToArray(post));
+	            }
+	        }
+	        if(comments != null) {
+	            for(Comment comment:comments) {
+	                comment.setBody_array(StringToArray.bodyToArray(comment));
+	            }
+	        }
+
+	        //検索結果のuser、posts、commentsをリクエストオブジェクトに格納
 	        request.setAttribute("user", user);
             request.setAttribute("posts", posts);
-
+            request.setAttribute("comments", comments);
 	        //show.jspに移動
 	        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/users/show.jsp");
 	        rd.forward(request, response);
