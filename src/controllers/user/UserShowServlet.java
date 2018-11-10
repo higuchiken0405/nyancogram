@@ -76,11 +76,6 @@ public class UserShowServlet extends HttpServlet {
 	                post.setContent_array(StringToArray.contentToArray(post));
 	            }
 	        }
-	        if(comments != null) {
-	            for(Comment comment:comments) {
-	                comment.setBody_array(StringToArray.bodyToArray(comment));
-	            }
-	        }
 
 	        //検索結果のuser、posts、commentsをリクエストオブジェクトに格納
 	        request.setAttribute("user", user);

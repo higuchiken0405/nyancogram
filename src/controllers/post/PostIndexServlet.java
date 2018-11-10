@@ -42,11 +42,6 @@ public class PostIndexServlet extends HttpServlet {
                 post.setContent_array(StringToArray.contentToArray(post));
             }
         }
-        if(comments != null) {
-            for(Comment comment:comments) {
-                comment.setBody_array(StringToArray.bodyToArray(comment));
-            }
-        }
 
 	    //リクエストオブジェクトに実行結果を格納
 	    request.setAttribute("posts", posts);
