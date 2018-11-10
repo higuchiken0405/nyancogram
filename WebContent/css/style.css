@@ -1,6 +1,8 @@
 @charset "UTF-8";
 
-/* 全体設定 */
+/*************************
+******** 全体設定 **********
+**************************/
 html {
 	height: 100%
 }
@@ -25,16 +27,17 @@ body {
     overflow: auto;
 
 }
-
+/*************************
+******** ヘッダー **********
+**************************/
 header {
-	font-size: 25px;
 	color: rgba(240, 240 ,240, 0.8);
 	font-weight: bold;
 	text-align: left;
 	font-family:"ヒラギノ丸ゴ Pro W4","ヒラギノ丸ゴ Pro","Hiragino Maru Gothic Pro","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO";
     background-color: rgba(30, 30, 30, 1);
-    height: 10%;
-    padding-left: 15%;
+    height: 80px;
+    border: 1px solid rgba(30, 30, 30, 1);
 }
 header a {
 	text-decoration: none;
@@ -43,7 +46,65 @@ header a {
 header a:hover {
     color: rgba(180, 180 ,180, 0.8);
 }
-/* aside・section設定 */
+header ul {
+	list-style: none;
+}
+header h1.logo {
+	display: inline;
+    float: left;
+    margin: 0 0 0 10%;
+}
+header span.logout {
+	float: right;
+	margin: 1% 15% 0 0;
+	font-size: 140%;
+}
+/*************************
+**** ログイン・サインアップ設定 ****
+**************************/
+.container_signup_login {
+	border: 1px solid red;
+}
+.container_signsup_login .form_part {
+    margin: 15px 0;
+}
+.container_signsup_login .form_part input[type=text] {
+    width: 200px;
+    height: 20px;
+    font-size:20px;
+}
+.container_signsup_login .form_part input[type=password] {
+    width: 200px;
+    height: 20px;
+    font-size:20px;
+}
+.container_signsup_login .form_part select {
+    width: 350px;
+    height: 30px;
+    font-size:18px;
+}
+.container_signsup_login button[type=submit] {
+    border: 1px solid black;
+    padding: 10px 25px 10px 25px;
+    margin-top: 20px;
+    font-size:18px;
+}
+.container_signsup_login button[type=submit]:hover {
+    border: 1px solid rgba(220, 220, 220, 1);
+    color: rgba(220, 220, 200, 1);
+    background-color: rgba(30, 30, 30, 0.8);
+}
+a.to_login {
+	margin-top: 20px;
+	display: inline-block;
+}
+a.to_signup {
+    margin-top: 20px;
+    display: inline-block;
+}
+/*************************
+**** aside・section設定 ****
+**************************/
 aside.aside {
     float: left;
     width: 20%;
@@ -80,7 +141,9 @@ a.to_users_edit:hover {
 textarea.aside_textarea {
 	height: 100px;
 }
-/* asideのアイコン画像 */
+/*************************
+**** asideのアイコン画像 ****
+**************************/
 img.user_icon {
     width: 150px;
     height: 150px;
@@ -88,7 +151,9 @@ img.user_icon {
     border-radius: 15px;
     margin-bottom: 10px;
 }
-/* トップページ設定 */
+/*************************
+**** トップページ設定 ****
+**************************/
 h2.toppage {
     padding-top: 100px;
     color: white;
@@ -270,11 +335,16 @@ h3.post_title {
 	padding: 0 15px 5px 15px;
 	font-size: 18px;
 }
-
+img.post_img {
+	width: 300px;
+	border-radius: 5px;
+}
 ul.post_icon_list {
 	list-style: none;
 	text-align: right;
 	margin-right: 20px;
+	border-top: 1px solid silver;
+	border-bottom: 1px solid silver
 }
 img.comment_icon {
     width: 40px;
@@ -295,15 +365,20 @@ img.favorite_icon:hover {
     height: 50px;
     margin: 5px;
 }
-.comment_container {
-    padding: 20px 0 20px 0;
+
+.comment {
     display: none;
 }
-.comment_container textarea {
-    width: 300px;
-    height: 60px;
-    font-size: 20px;
+.comment_container {
+}
 
+.comment_form_container {
+    padding: 20px 0 20px 0;
+}
+.comment_form_container input[type=text] {
+    width: 300px;
+    height: 30px;
+    font-size:20px;
 }
 
 /* ユーザー一覧画面 */
@@ -312,14 +387,14 @@ img.favorite_icon:hover {
     height: 100%;
 }
 
-.container_users_index li {
+.container_users_index ul.user_index_list li {
 	list-style-type: none;
 	text-align: left;
-	margin-left: 50px;
+	margin-left: 10px;
 	margin-top: 10px;
 	border-bottom: 1px solid #cccccc;
 }
-.container_users_index li:hover {
+.container_users_index ul.user_index_list li:hover {
     border-bottom: 1px solid #656565;
 }
 img.users_index_icon {
@@ -347,3 +422,70 @@ span.gender_female {
 	font-weight: bold;
 	font-size: 120%;
 }
+/**********************
+*****  投稿一覧  ********
+**************************/
+.post_index_container {
+
+}
+.post_index_container ul {
+    list-style: none;
+}
+.post_index_container ul.post_index_user_time {
+	text-align:left;
+}
+.post_index_container a {
+	text-decoration: none;
+	color: rgba(30, 30, 30, 1);
+}
+.post_index_container a:hover {
+	color: blue;
+	font-weight: bold;
+	text-decoration: underline;
+}
+.post_index_user {
+	padding-bottom: 5px;
+	border-bottom: 1px solid #cccccc;
+}
+img.post_user_icon {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+span.post_index_user {
+    margin-right: 200px;
+}
+.post_index_title_content {
+	width:350px;
+	margin-right: 0px;
+	display: inline-box;
+	float: left;
+}
+img.post_index_img {
+	border-radius: 15px;
+	width: 200px;
+	max-height: 200px;
+	object-fit: cover;
+}
+ul.comment_list {
+	list-style: none;
+	text-align: left;
+}
+img.comment_user_icon {
+	width: 40xp;
+	height: 40px;
+	object-fit: cover;
+	border-radius: 10px;
+}
+a.post_index_comment_user {
+	text-decoration: none;
+	color: rgba(30, 30, 30, 1);
+    margin-right: 20px;
+}
+a.post_index_comment_user:hover {
+    text-decoration: underline;
+    color: blue;
+    font-weight: bold;
+}
+
