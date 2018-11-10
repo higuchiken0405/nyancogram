@@ -6,29 +6,38 @@
             <aside class="aside">
                 <c:import url="../topPage/_aside.jsp" />
             </aside>
-        <section class="section clearfix">
-        <c:forEach var="user" items="${users}" >
-            <c:if test="${user.id != sessionScope.login_user.id}">
-            <li>
-                <a href="<c:url value='/users/show?id=${user.id}' />" class="users_idex_link">
-                    <span class="users_index">
-                        <img src="<c:url  value='/icon/${user.icon}'/>" class="users_index_icon">
-                        <c:out value="${user.name}" />&nbsp;さん
-                    </span>
-                    <c:choose>
-                        <c:when test="${user.gender == '♂'}">
-                            <span class="users_index gender_male"><c:out value="${user.gender}" /> </span>
-                        </c:when>
-                        <c:otherwise>
-                            <span class="users_index gender_female"><c:out value="${user.gender}" /></span>
-                        </c:otherwise>
-                    </c:choose>
-                    <span class="users_index">生息地域 : <c:out value="${user.area}" /></span>
-                </a>
-            </li>
-            </c:if>
-        </c:forEach>
-        </section>
-    </div>
+            <section class="section clearfix">
+                <ul class=main_button_list>
+                    <li>
+                        <div class="posts_index">
+                            <a href="<c:url value='/posts/index' />" class="posts_index_button">投稿一覧</a>
+                        </div>
+                    </li>
+                </ul>
+                <c:forEach var="user" items="${users}" >
+                    <c:if test="${user.id != sessionScope.login_user.id}">
+                    <ul class="user_index_list">
+                        <li>
+                            <a href="<c:url value='/users/show?id=${user.id}' />" class="users_idex_link">
+                            <span class="users_index">
+                                <img src="<c:url  value='/icon/${user.icon}'/>" class="users_index_icon">
+                                <c:out value="${user.name}" />&nbsp;さん
+                            </span>
+                            <c:choose>
+                                <c:when test="${user.gender == '♂'}">
+                                    <span class="users_index gender_male"><c:out value="${user.gender}" /> </span>
+                                </c:when>
+                                <c:otherwise>
+                                    <span class="users_index gender_female"><c:out value="${user.gender}" /></span>
+                                </c:otherwise>
+                            </c:choose>
+                            <span class="users_index">生息地域 : <c:out value="${user.area}" /></span>
+                            </a>
+                        </li>
+                    </ul>
+                    </c:if>
+                </c:forEach>
+            </section>
+        </div>
     </c:param>
 </c:import>
