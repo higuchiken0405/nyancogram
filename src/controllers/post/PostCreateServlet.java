@@ -36,44 +36,44 @@ public class PostCreateServlet extends HttpServlet {
         //ファイル名を定義
         String file_name = null;
         if(part.getSubmittedFileName() != null && !part.getSubmittedFileName().equals("")) {
-
+            //フォームでファイルが送られた時、
             //現在時刻の取得を取得し、文字列化してファイル名に利用
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
             file_name = sdf.format(current_time) + ".jpg";
             //ファイルをlocationで設定したディレクトリに保存
             part.write(file_name);
-
         }
 
 
         //パラメータの取得(enctype="multipart/form-data"があることによる文字化け対策)
         String title = new String(request.getParameter("title").getBytes("UTF-8"));
         String content = new String(request.getParameter("content").getBytes("UTF-8"));
-
         //セッションオブジェクトにあるログインユーザー情報からIDを取得
-        User login_user = (User) request.getSession().getAttribute("login_user");
-        Integer user_id = login_user.getId();
+        User loginUser = (User) request.getSession().getAttribute("login_user");
 
         //Postクラスをインスタンス化し、値をセット
         Post post = new Post();
         post.setTitle(title);
         post.setContent(content);
         if(file_name != null) { post.setImage(file_name); }
-        post.setUser_id(user_id);
+        post.setUser(loginUser);
         post.setCreated_at(current_time);
         post.setUpdated_at(current_time);
 
         //エンティティマネージャの生成
         EntityManager em = DBUtil.createEntityManger();
 
-        //
+        //トランザクション開始
         em.getTransaction().begin();
+        //投稿をDBに登録
         em.persist(post);
+        //登録をコミット
         em.getTransaction().commit();
+        //エンティティマネージャを終了
         em.close();
 
 
-        //ユーザーのshow.jspへ移動
+        //トップページへ移動
         response.sendRedirect(request.getContextPath() + "/");
 
 	}
