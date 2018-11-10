@@ -7,16 +7,25 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
 
 @Entity
 @NamedQueries({
     @NamedQuery(
             name = "getAllMyPosts",
-            query = "SELECT p FROM Post AS p Where p.user_id = :user_id ORDER BY p.id DESC"
-            )
+            query = "SELECT p FROM Post AS p Where p.user.id = :user_id ORDER BY p.id DESC"
+            ),
+    @NamedQuery(
+            name = "getAllPosts",
+            query = "SELECT p FROM Post AS p ORDER BY p.id DESC"
+            ),
 })
 @Table(name="posts")
 public class Post {
@@ -29,20 +38,27 @@ public class Post {
     @Column(name="title", nullable=false)
     private String title;
 
+    @Lob
     @Column(name="content", nullable=false)
     private String content;
+
+    @Transient
+    private String[] content_array;
 
     @Column(name="image")
     private String image;
 
-    @Column(name="user_id")
-    private Integer user_id;
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
 
     @Column(name="created_at", nullable=false)
     private Timestamp created_at;
 
     @Column(name="updated_at", nullable=false)
     private Timestamp updated_at;
+
+
 
 
     public Integer getId() {
@@ -59,6 +75,14 @@ public class Post {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String[] getContent_array() {
+        return content_array;
+    }
+
+    public void setContent_array(String[] content_array) {
+        this.content_array = content_array;
     }
 
     public String getContent() {
@@ -93,14 +117,13 @@ public class Post {
         this.image = image;
     }
 
-    public Integer getUser_id() {
-        return user_id;
+    public User getUser() {
+        return user;
     }
 
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
+    public void setUser(User user) {
+        this.user = user;
     }
-
 
 
 }
