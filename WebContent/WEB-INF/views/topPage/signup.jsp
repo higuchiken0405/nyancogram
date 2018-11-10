@@ -2,7 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="../layout/app.jsp">
     <c:param name="content">
-        <div class="container container_main">
+        <div class="container container_main container_signsup_login">
+        <h2>Sign up</h2>
         <form action="signup" method="post">
             <div class="form_part">
                 <label for="name">名前：</label>
@@ -25,8 +26,13 @@
                 <label for="password">パスワード：</label>
                 <input type="password" name="password" value="${user.password}"/>
             </div>
+            <div class="form_part">
+                <label for="password-confirmation">パスワード確認：</label>
+                <input type="password" name="password" value="${user.password}"/>
+            </div>
             <button type="submit">Sign up</button>
         </form>
+        <a href="<c:url value='/login'/>" class="to_login">Login画面へ</a>
         </div>
     </c:param>
 </c:import>
