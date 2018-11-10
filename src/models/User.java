@@ -48,7 +48,7 @@ public class User {
 
     //アイコン画像名
     @Column(name="icon")
-    private String icon = "default.jpg";
+    private String icon;
 
     //メールアドレス
     @Column(name="email", nullable=false, unique=true)
