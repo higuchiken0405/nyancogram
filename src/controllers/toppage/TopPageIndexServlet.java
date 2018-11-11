@@ -41,15 +41,22 @@ public class TopPageIndexServlet extends HttpServlet {
 	        List<Comment> comments = em.createNamedQuery("getMyPostComments", Comment.class)
 	                                                    .setParameter("user_id", login_user.getId())
 	                                                    .getResultList();
-	        //エンティティマネージャを終了
-	        em.close();
 
-	        //文字列を改行で分けて配列に変換し、セットする
 	        if(posts != null) {
 	            for(Post post:posts) {
+	                //「ポストに対するお気に入りの数を取得する」クエリを実行した結果を格納
+	                Long favorite_count = em.createNamedQuery("getFavoriteCounts", Long.class)
+	                                                    .setParameter("post_id", post.getId())
+	                                                    .getSingleResult();
+	                //結果をポストにセット
+	                post.setFavorite_count(favorite_count);
+	                //文字列を改行で分けて配列に変換し、セットする
 	                post.setContent_array(StringToArray.contentToArray(post));
 	            }
 	        }
+
+	        //エンティティマネージャを終了
+	        em.close();
 
 	        //検索結果postsをリクエストオブジェクトに格納
 	        request.setAttribute("posts", posts);

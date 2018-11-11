@@ -29,8 +29,22 @@ public class UserShowServlet extends HttpServlet {
 
 	    //EntityManagerを生成
 	    EntityManager em = DBUtil.createEntityManger();
-	    //パラメータからユーザーIDを取得
-	    Integer user_id = Integer.parseInt(request.getParameter("id"));
+	    //ユーザーIDを定義
+	    Integer user_id = 0;
+	    //セッションオブジェクトからユーザーを取得
+	    User show_user = (User) request.getSession().getAttribute("user");
+	    System.out.println(show_user);
+
+	    if(show_user != null) {
+	        //セッションオブジェクトから取得したユーザーのIDを取得
+	        user_id = show_user.getId();
+	        //セッションオブジェクトからユーザー情報を削除
+	        request.getSession().removeAttribute("user");
+	    } else {
+	        //セッションオブジェクトにユーザーがない時
+	        //パラメータからユーザーIDを取得
+	        user_id = Integer.parseInt(request.getParameter("id"));
+	    }
 	    //セッションオブジェクトからログインユーザーのIDを取得
 	    User login_user = (User) request.getSession().getAttribute("login_user");
 	    Integer login_user_id = login_user.getId();
@@ -66,19 +80,24 @@ public class UserShowServlet extends HttpServlet {
                                                         .setParameter("user_id", user.getId())
                                                         .getResultList();
 
+            if(posts != null) {
+                for(Post post:posts) {
+                    //「ポストに対するお気に入りの数を取得する」クエリを実行した結果を格納
+                    Long favorite_count = em.createNamedQuery("getFavoriteCounts", Long.class)
+                                                        .setParameter("post_id", post.getId())
+                                                        .getSingleResult();
+                    //結果をポストにセット
+                    post.setFavorite_count(favorite_count);
+                    //文字列を改行で分けて配列に変換し、セットする
+                    post.setContent_array(StringToArray.contentToArray(post));
+                }
+            }
 
 	        //エンティティマネージャを終了
 	        em.close();
 
-	        //文字列を改行で分けて配列に変換し、セットする
-	        if(posts != null) {
-	            for(Post post:posts) {
-	                post.setContent_array(StringToArray.contentToArray(post));
-	            }
-	        }
-
-	        //検索結果のuser、posts、commentsをリクエストオブジェクトに格納
-	        request.setAttribute("user", user);
+	        //検索結果のuserをセッションオブジェクトに、posts、commentsをリクエストオブジェクトに格納
+	        request.getSession().setAttribute("user", user);
             request.setAttribute("posts", posts);
             request.setAttribute("comments", comments);
 	        //show.jspに移動

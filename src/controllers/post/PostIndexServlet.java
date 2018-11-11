@@ -33,15 +33,22 @@ public class PostIndexServlet extends HttpServlet {
 	    List<Post> posts = em.createNamedQuery("getAllPosts", Post.class).getResultList();
 	    //「全てのコメントを取得する」クエリを実行した結果を取得
 	    List<Comment> comments = em.createNamedQuery("getAllComments", Comment.class).getResultList();
-	    //エンティティマネージャを終了
-	    em.close();
 
-        //文字列を改行で分けて配列に変換し、セットする
         if(posts != null) {
             for(Post post:posts) {
+                //「ポストに対するお気に入りの数を取得する」クエリを実行した結果を格納
+                Long favorite_count = em.createNamedQuery("getFavoriteCounts", Long.class)
+                                                    .setParameter("post_id", post.getId())
+                                                    .getSingleResult();
+                //結果をポストにセット
+                post.setFavorite_count(favorite_count);
+                //文字列を改行で分けて配列に変換し、セットする
                 post.setContent_array(StringToArray.contentToArray(post));
             }
         }
+
+	    //エンティティマネージャを終了
+	    em.close();
 
 	    //リクエストオブジェクトに実行結果を格納
 	    request.setAttribute("posts", posts);

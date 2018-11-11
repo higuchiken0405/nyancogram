@@ -32,7 +32,10 @@
                                 <ul class="post_icon_list">
                                     <li>
                                         <img src="<c:url value='/images/comment.png' />" class="comment_icon">
-                                        <img src="<c:url value='/images/heart.png' />" class="favorite_icon">
+                                        <a href="<c:url value='/favorites/create?post_id=${post.id}' />" >
+                                            <img src="<c:url value='/images/heart.png' />" class="favorite_icon">
+                                        </a>
+                                        <span class="favorite_count"><c:out value="${post.favorite_count}" /></span>
                                     </li>
                                 </ul>
                             </div>

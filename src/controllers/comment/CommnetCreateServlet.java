@@ -60,7 +60,6 @@ public class CommnetCreateServlet extends HttpServlet {
 	    //エンティティマネージャを終了
 	    em.close();
 
-        //トップページへ移動
         try {
             //詳細ページから送られてきたユーザーIDをセッションオブジェクトに保存
             request.getSession().setAttribute("user_id",request.getParameter("user_id"));
