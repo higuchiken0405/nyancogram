@@ -21,6 +21,10 @@ import javax.persistence.Table;
             name="checkRegisteredFavorite",
             query="SELECT COUNT(f) FROM Favorite AS f WHERE f.post.id = :post_id AND f.user.id = :user_id"
             ),
+    @NamedQuery(
+            name="getPostFavorites",
+            query="SELECT f FROM Favorite AS f WHERE f.post.id = :post_id"
+            )
 })
 @Table(name="favorites")
 public class Favorite {
