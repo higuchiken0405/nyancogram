@@ -7,6 +7,8 @@ import utils.DBUtil;
 
 public class SignupValidator {
 
+    //サインアップ時に入力したユーザーをバリデーションした結果の
+    //エラーメッセージを取得するメソッド
     public static String[] validate(User user) {
 
         String[] errors = new String[4];
@@ -20,8 +22,7 @@ public class SignupValidator {
 
     }
 
-
-    //名前をバリデーションするメソッド
+    //名前をバリデーションした結果のエラーメッセージを取得するメソッド
     private static String nameValidate(String name) {
         if(name == null || name.equals("")) {
             //名前がnullか空だった時
@@ -30,7 +31,8 @@ public class SignupValidator {
         }
         return "";
     }
-    //メールアドレスをバリデーションするメソッド
+
+    //メールアドレスをバリデーションした結果のエラーメッセージを取得するメソッド
     private static String emailValidate(String email) {
         if(email == null || email.equals("")) {
             //メールアドレスがnullか空だった時
@@ -52,7 +54,8 @@ public class SignupValidator {
         }
         return "";
     }
-    //パスワードをバリデーションするメソッド
+
+    //パスワードをバリデーションした結果のエラーメッセージを取得するメソッド
     private static String passwordValidate(String password) {
 
         if(password == null || password.equals("")) {
@@ -62,6 +65,7 @@ public class SignupValidator {
         }
         return "";
     }
+
     //パスワードとパスワード確認が同じが確認するメソッド
     private static String passwordConfirmationValidate(String password, String password_confirmation) {
         if(password != null && !password.equals("")) {
