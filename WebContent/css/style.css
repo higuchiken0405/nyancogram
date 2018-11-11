@@ -59,16 +59,21 @@ header span.logout {
 	margin: 1% 15% 0 0;
 	font-size: 140%;
 }
-/*************************
+/*******************************
 **** ログイン・サインアップ設定 ****
-**************************/
+********************************/
 .container_signup_login {
 	border: 1px solid red;
 }
 .container_signsup_login .form_part {
-    margin: 15px 0;
+    margin-bottom: 15px;
 }
 .container_signsup_login .form_part input[type=text] {
+    width: 200px;
+    height: 20px;
+    font-size:20px;
+}
+.container_signsup_login .form_part input[type=email] {
     width: 200px;
     height: 20px;
     font-size:20px;
@@ -101,6 +106,12 @@ a.to_login {
 a.to_signup {
     margin-top: 20px;
     display: inline-block;
+}
+
+p.error_msg {
+    color: red;
+    font-size: 12px;
+    display: inline;
 }
 /*************************
 **** aside・section設定 ****
@@ -207,7 +218,9 @@ p.toppagemsg {
     list-style: none;
     text-align: right;
 }
-/* 投稿フォームのボタン */
+/**********************
+*** 投稿フォームを出すボタン ***
+************************/
 .post_form {
     display:inline;
 }
@@ -226,7 +239,9 @@ a.post_form_button:hover {
     color: rgba(240, 240, 240, 1);
     background-color: rgba(30, 30, 30, 1);
 }
-/* 投稿フォーム */
+/**********************
+*** 投稿フォーム ***
+************************/
 .post_form_container {
     border: 2px solid #7f7f7f;
     background-color: rgba(20, 20, 20, 0.8);
@@ -266,8 +281,9 @@ label.image_select:hover {
     color: black;
     background-color: rgba(156, 213, 255, 0.9);
 }
-
-/* 投稿ボタン */
+/**********************
+******* 投稿ボタン *******
+************************/
 button.post_submit_button {
     padding: 10px 25px 10px 25px;
     font-size: 15px;
@@ -285,7 +301,9 @@ button.post_submit_button:hover {
     color: rgba(30, 30, 30, 1);
 
 }
-/* 登録猫一覧へのボタン */
+/********************************
+******* 登録猫一覧へのボタン *******
+*********************************/
 .users_index {
 	display:inline;
 }
@@ -303,8 +321,9 @@ a.users_index_button:hover {
     color: rgba(240, 240, 240, 1);
     background-color: rgba(30, 30, 30, 1);
 }
-
-/* 投稿一覧へのボタン */
+/********************************
+******* 投稿一覧へのボタン *******
+*********************************/
 .posts_index {
     display:inline;
 }
@@ -344,6 +363,9 @@ img.post_img {
 	width: 300px;
 	border-radius: 5px;
 }
+/**************************************
+*****  コメント、いいねのアイコン  ********
+**************************************/
 ul.post_icon_list {
 	list-style: none;
 	text-align: right;
@@ -381,7 +403,9 @@ span.favorite_count {
 	display:inline-block;
 
 }
-
+/*************************
+*****  コメントフォーム  ********
+*************************/
 .comment {
     display: none;
 }
@@ -487,7 +511,7 @@ img.post_index_img {
 	object-fit: cover;
 }
 /*************************
-****** コメント ***********
+****** コメント一覧 ***********
 **************************/
 ul.comment_list {
 	list-style: none;

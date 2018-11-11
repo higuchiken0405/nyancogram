@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @NamedQueries({
@@ -20,10 +21,9 @@ import javax.persistence.Table;
             query="SELECT u FROM User AS u ORDER BY u.name ASC"
     ),
     @NamedQuery(
-            //ログイン時にメールアドレスとパスワードをチェック
-            //(セットした値のメールアドレスとパスワードを持つユーザーを取得)
-            name="checkLoginMailAndPass",
-            query="SELECT u FROM User AS u WHERE u.email = :email AND u.password = :password"
+            //ログイン時にメールアドレスをチェック
+            name="checkLoginMail",
+            query="SELECT COUNT(u) FROM User AS u WHERE u.email = :email"
     )
 })
 @Table(name = "users")
@@ -57,7 +57,16 @@ public class User {
     //パスワード
     @Column(name="password", nullable=false, length=64)
     private String password;
+    //パスワード確認
+    @Transient
+    private String password_confirmation;
 
+    public String getPassword_confirmation() {
+        return password_confirmation;
+    }
+    public void setPassword_confirmation(String password_confirmation) {
+        this.password_confirmation = password_confirmation;
+    }
     //生成日時
     @Column(name="created_at", nullable=false)
     private Timestamp created_at;
