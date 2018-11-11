@@ -30,7 +30,7 @@ public class TopPageIndexServlet extends HttpServlet {
 	    //セッションオブジェクトから、ログインユーザー情報を取得
 	    User login_user = (User) request.getSession().getAttribute("login_user");
 	    if(login_user != null) {
-	        //ログインユーザーがnullでない時
+	        //ログインユーザーがnullではない時
 	        //エンティティマネージャの生成
 	        EntityManager em = DBUtil.createEntityManger();
 	        //「自分が投稿したポストを全て取得する」クエリを実行した結果を格納
@@ -43,6 +43,7 @@ public class TopPageIndexServlet extends HttpServlet {
 	                                                    .getResultList();
 
 	        if(posts != null) {
+	            //ポストを検索した結果がnullではない時
 	            for(Post post:posts) {
 	                //「ポストに対するお気に入りの数を取得する」クエリを実行した結果を格納
 	                Long favorite_count = em.createNamedQuery("getFavoriteCounts", Long.class)
@@ -50,7 +51,7 @@ public class TopPageIndexServlet extends HttpServlet {
 	                                                    .getSingleResult();
 	                //結果をポストにセット
 	                post.setFavorite_count(favorite_count);
-	                //文字列を改行で分けて配列に変換し、セットする
+	                //内容を改行で分けて配列に変換し、セットする
 	                post.setContent_array(StringToArray.contentToArray(post));
 	            }
 	        }
@@ -62,11 +63,19 @@ public class TopPageIndexServlet extends HttpServlet {
 	        request.setAttribute("posts", posts);
 	        request.setAttribute("comments", comments);
 
+	        //セッションオブジェクトからフラッシュ、エラーメッセージを取得し、リクエストオブジェクトに格納
+	        request.setAttribute("flush", request.getSession().getAttribute("flush"));
+	        request.setAttribute("errors_post", request.getSession().getAttribute("errors_post"));
+	        //セッションオブジェクトからフラッシュ、エラーメッセージを削除
+	        request.getSession().removeAttribute("flush");
+            request.getSession().removeAttribute("errors_post");
+
 	        //toppageのindex.jspへ移動
 	        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/topPage/index.jsp");
 	        rd.forward(request, response);
 
 	    } else {
+	        //ログインユーザーがnullの時
 	        //toppageのindex.jspへ移動
 	        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/topPage/index.jsp");
 	        rd.forward(request, response);
