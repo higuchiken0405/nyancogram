@@ -66,7 +66,7 @@ public class SignupServlet extends HttpServlet {
         user.setUpdated_at(current_time);
 
         //バリデーション
-        String[] errors = SignupValidator.Validate(user);
+        String[] errors = SignupValidator.validate(user);
 
         if(errors[0].length() > 0 || errors[1].length() > 0
                 || errors[2].length() > 0 || errors[3].length() > 0) {

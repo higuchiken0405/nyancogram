@@ -7,7 +7,7 @@ import utils.DBUtil;
 
 public class SignupValidator {
 
-    public static String[] Validate(User user) {
+    public static String[] validate(User user) {
 
         String[] errors = new String[4];
 

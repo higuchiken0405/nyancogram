@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.User;
+import models.validators.LoginValidator;
 import utils.DBUtil;
 
 @WebServlet("/login")
@@ -30,15 +31,29 @@ public class LoginServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //チェック結果を定義(初期値false)
-        Boolean check_result = false;
+
 
 	    //パラメータを取得
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        //userを初期化
-        User user = null;
 
+        //仮のユーザーと定義し、パラメータの値をセット
+        User tentative_user = new User();
+        tentative_user.setEmail(email);
+        tentative_user.setPassword(password);
+
+        String[] errors = LoginValidator.validate(tentative_user);
+        if(errors[0].length() > 0 || errors[1].length() >0) {
+            //エラーメッセージがある場合
+            //リクエストオブジェクトにエラーメッセージを格納
+            request.setAttribute("errors", errors);
+            //ログイン画面へフォワード
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/topPage/login.jsp");
+            rd.forward(request, response);
+        }
+
+        //userを定義(初期化)
+        User user = null;
         if(email != null && !email.equals("") && password != null && !password.equals("")) {
             //パラメータがnullか空ではない時
             //エンティティマネージャの生成
@@ -51,29 +66,27 @@ public class LoginServlet extends HttpServlet {
                                             .setParameter("password", password)
                                             .getSingleResult();
             }catch(NoResultException e) {}
-
             //エンティティマネージャを終了
             em.close();
 
-            if(user != null) {
-                //Userインスタンスがnullではない時
-                //チェック結果をtrue
-                check_result = true;
-            }
-        }
+            if(user == null) {
+                //検索結果がnullの時
+                //エラーメッセージを配列に格納
+                errors[0] = "メールアドレスかパスワードが間違っています";
+                //リクエストオブジェクトにエラーメッセージを格納
+                request.setAttribute("errors", errors);
+                //ログイン画面へフォワード
+                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/topPage/login.jsp");
+                rd.forward(request, response);
 
-        if(!check_result) {
-            //チェック結果がtrueではない時(Userインスタンスがnullの時)
-            //login.jspに戻る
-            RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/views/login.jsp");
-            rd.forward(request, response);
-        } else {
-            //チェック結果がtrueの時
-            //セッションオブジェクトにメールアドレスとパスワードが一致するUserインスタンスを
-            //ログインユーザーとして格納
-            request.getSession().setAttribute("login_user", user);
-            //メインページへリダイレクト
-            response.sendRedirect(request.getContextPath() + "/");
+            } else {
+                //セッションオブジェクトにメールアドレスとパスワードが一致するUserインスタンスを
+                //ログインユーザーとして格納
+                request.getSession().setAttribute("login_user", user);
+                //メインページへリダイレクト
+                response.sendRedirect(request.getContextPath() + "/");
+            }
+
         }
 
 	}

@@ -5,13 +5,19 @@
         <div class="container container_main container_signsup_login">
         <h2>Log in</h2>
         <form action="<c:url value='/login'/>" method="POST">
+            <c:if test="${errors[0].length() > 0}">
+                <p class="error_msg"><c:out value="${errors[0]}" /></p>
+            </c:if>
             <div class="form_part">
                 <label for="email">メールアドレス：</label>
-                <input type="text" name="email" value="${user.email}"/>
+                <input type="text" name="email" value="${user.email}" required />
             </div>
+            <c:if test="${errors[1].length() > 0}">
+                <p class="error_msg"><c:out value="${errors[1]}" /></p>
+            </c:if>
             <div class="form_part">
                 <label for="password">パスワード：</label>
-                <input type="password" name="password" value="${user.password}"/>
+                <input type="password" name="password" value="${user.password}" required />
             </div>
             <button type="submit">Log in</button>
         </form>
