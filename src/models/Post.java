@@ -58,11 +58,20 @@ public class Post {
     @Column(name="updated_at", nullable=false)
     private Timestamp updated_at;
 
-
+    @Transient
+    private Long favorite_count;
 
 
     public Integer getId() {
         return id;
+    }
+
+    public Long getFavorite_count() {
+        return favorite_count;
+    }
+
+    public void setFavorite_count(Long favorite_count) {
+        this.favorite_count = favorite_count;
     }
 
     public void setId(Integer id) {
