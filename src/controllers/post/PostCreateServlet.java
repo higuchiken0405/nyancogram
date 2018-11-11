@@ -1,5 +1,6 @@
 package controllers.post;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -18,7 +19,7 @@ import models.User;
 import utils.DBUtil;
 
 @WebServlet("/posts/create")
-@MultipartConfig(location="/Applications/Eclipse_4.8.0.app/Contents/workspace/nyancogram/WebContent/uploaded/")
+@MultipartConfig()
 public class PostCreateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -39,9 +40,19 @@ public class PostCreateServlet extends HttpServlet {
             //フォームでファイルが送られた時、
             //現在時刻の取得を取得し、文字列化してファイル名に利用
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+            //
+
             file_name = sdf.format(current_time) + ".jpg";
-            //ファイルをlocationで設定したディレクトリに保存
-            part.write(file_name);
+
+            String path = getServletContext().getRealPath("/uploaded") + "/" + file_name;
+
+            //ファイルの書き込み
+            try {
+                part.write(path);
+            } catch(FileNotFoundException e) {
+                e.printStackTrace();
+                System.out.println("失敗しました");
+            }
         }
 
 

@@ -16,7 +16,7 @@ import models.User;
 import utils.DBUtil;
 
 @WebServlet("/users/icon")
-@MultipartConfig(location="/Applications/Eclipse_4.8.0.app/Contents/workspace/nyancogram/WebContent/icon/")
+@MultipartConfig()
 public class UserIconServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -44,9 +44,10 @@ public class UserIconServlet extends HttpServlet {
         String userName = loginUser.getName();
         String name = userName + ".jpg";
 
+        String path = getServletContext().getRealPath("/icon") + "/" + name;
         //ファイルの書き込み
         try {
-            part.write(name);
+            part.write(path);
         } catch(FileNotFoundException e) {
             e.printStackTrace();
             System.out.println("失敗しました");

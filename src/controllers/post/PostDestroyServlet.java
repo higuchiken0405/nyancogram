@@ -60,7 +60,8 @@ public class PostDestroyServlet extends HttpServlet {
 	        em.remove(comment);
 	    }
 	    //ポストの画像を削除
-	    ImageFindDelete.imageFindDelte(post.getImage());
+	    String path = getServletContext().getRealPath("/uploaded") + "/" + post.getImage();
+	    ImageFindDelete.imageFindDelte(path);
 	    //ポストをDBから除去
 	    em.remove(post);
 	    //除去を確定
