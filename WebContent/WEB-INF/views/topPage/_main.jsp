@@ -45,6 +45,12 @@
                             <div class="post_container">
                                 <h3 class="post_title"><c:out value="${post.title}" /></h3>
                                 <p><c:out value="${post.created_at}" /></p>
+                                <c:if test="${post.user.id == sessionScope.login_user.id}">
+                                    <p class="destorty_icon"><a href="#" onclick="confirmDestroy();">×</a></p>
+                                    <form action="<c:url value='/posts/destroy' />" method="POST">
+                                        <input type="hidden" name="post_id" value="${post.id}">
+                                    </form>
+                                </c:if>
                                 <c:forEach var="content" items="${post.content_array}" >
                                     <p class="post_conetnt"><c:out value="${content}" /></p>
                                 </c:forEach>
@@ -111,4 +117,9 @@ $(function(){
         $(this).parents(".post_container").next().slideToggle();
     });
 });
+function confirmDestroy() {
+    if(confirm("本当に削除してよろしいですか？")) {
+        document.forms[1].submit();
+    }
+}
 </script>
