@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
@@ -16,6 +17,7 @@ import javax.servlet.http.Part;
 
 import models.Post;
 import models.User;
+import models.validators.PostValidator;
 import utils.DBUtil;
 
 @WebServlet("/posts/create")
@@ -40,12 +42,10 @@ public class PostCreateServlet extends HttpServlet {
             //フォームでファイルが送られた時、
             //現在時刻の取得を取得し、文字列化してファイル名に利用
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
-            //
-
+            //ファイル名を設定(jpg形式)
             file_name = sdf.format(current_time) + ".jpg";
-
+            //保存場所を設定
             String path = getServletContext().getRealPath("/uploaded") + "/" + file_name;
-
             //ファイルの書き込み
             try {
                 part.write(path);
@@ -71,22 +71,34 @@ public class PostCreateServlet extends HttpServlet {
         post.setCreated_at(current_time);
         post.setUpdated_at(current_time);
 
-        //エンティティマネージャの生成
-        EntityManager em = DBUtil.createEntityManger();
 
-        //トランザクション開始
-        em.getTransaction().begin();
-        //投稿をDBに登録
-        em.persist(post);
-        //登録をコミット
-        em.getTransaction().commit();
-        //エンティティマネージャを終了
-        em.close();
+        List<String> errors = PostValidator.validate(post);
+        if(errors.size() > 0) {
+            System.out.println("エラー側");
+            //エラーメッセージがある場合
+            //エラーメッセージリストをセッションオブジェクトに格納
+            request.getSession().setAttribute("errors_post", errors);
+            //トップページへ移動
+            response.sendRedirect(request.getContextPath() + "/");
+        } else {
+            System.out.println("成功側");
+            //エンティティマネージャの生成
+            EntityManager em = DBUtil.createEntityManger();
 
+            //トランザクション開始
+            em.getTransaction().begin();
+            //投稿をDBに登録
+            em.persist(post);
+            //登録をコミット
+            em.getTransaction().commit();
+            //エンティティマネージャを終了
+            em.close();
+            //フラッシュメッセージをセッションオブジェクトに格納
+            request.getSession().setAttribute("flush", "投稿に成功しました");
+            //トップページへ移動
+            response.sendRedirect(request.getContextPath() + "/");
 
-        //トップページへ移動
-        response.sendRedirect(request.getContextPath() + "/");
-
+        }
 	}
 
 }
