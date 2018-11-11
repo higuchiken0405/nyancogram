@@ -25,6 +25,10 @@ import javax.persistence.Transient;
     @NamedQuery(
             name="getAllComments",
             query="SELECT c FROM Comment AS c ORDER BY c.id ASC"
+            ),
+    @NamedQuery(
+            name="getPostComments",
+            query="SELECT c FROM Comment AS c WHERE c.post.id = :post_id"
             )
 })
 @Table(name="comments")
