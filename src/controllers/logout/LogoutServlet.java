@@ -21,7 +21,7 @@ public class LogoutServlet extends HttpServlet {
 	    //セッションからログインユーザーを削除
 	    request.getSession().removeAttribute("login_user");
 	    //セッションオブジェクトごと除去
-	    //request.getSession().invalidate();
+	    request.getSession().invalidate();
 	    //フラッシュメッセージをセッションオブジェクトに格納
 	    request.getSession().setAttribute("flush", "ログアウトしました");
 	    //トップページへリダイレクト

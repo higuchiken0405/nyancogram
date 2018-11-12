@@ -27,6 +27,7 @@ public class TopPageIndexServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+
 	    //セッションオブジェクトから、ログインユーザー情報を取得
 	    User login_user = (User) request.getSession().getAttribute("login_user");
 	    if(login_user != null) {
