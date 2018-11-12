@@ -90,6 +90,8 @@ public class SignupServlet extends HttpServlet {
             em.close();
             //ユーザーをログインユーザーとして、セッションオブジェクトに格納
             request.getSession().setAttribute("login_user", user);
+            //フラッシュメッセージをセッションオブジェクトに格納
+            request.getSession().setAttribute("flush", "ユーザー登録に成功しました");
             //メイン画面へリダイレクト
             response.sendRedirect(request.getContextPath() + "/");
         }
