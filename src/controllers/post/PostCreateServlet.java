@@ -71,17 +71,17 @@ public class PostCreateServlet extends HttpServlet {
         post.setCreated_at(current_time);
         post.setUpdated_at(current_time);
 
-
+        //ポストをバリデーションした結果のエラーメッセージを取得
         List<String> errors = PostValidator.validate(post);
         if(errors.size() > 0) {
-            System.out.println("エラー側");
+
             //エラーメッセージがある場合
             //エラーメッセージリストをセッションオブジェクトに格納
-            request.getSession().setAttribute("errors_post", errors);
+            request.getSession().setAttribute("errors", errors);
             //トップページへ移動
             response.sendRedirect(request.getContextPath() + "/");
         } else {
-            System.out.println("成功側");
+
             //エンティティマネージャの生成
             EntityManager em = DBUtil.createEntityManger();
 
