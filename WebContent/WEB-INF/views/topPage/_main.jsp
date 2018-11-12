@@ -9,10 +9,10 @@
                     </div>
                 </div>
             </c:if>
-            <c:if test="${errors_post != null}" >
+            <c:if test="${errors != null}" >
                 <div class="message">
                     <div class="errors_post">
-                        <c:forEach var="error" items="${errors_post}">
+                        <c:forEach var="error" items="${errors}">
                             <span>・ <c:out value="${error}" /></span>&ensp;
                         </c:forEach>
                     </div>
@@ -40,11 +40,11 @@
                     <form action="<c:url value='/posts/create'/>" method="POST" enctype="multipart/form-data">
                         <div class="form_part">
                             <label for="title">タイトル</label><br>
-                            <input type="text" name="title" />
+                            <input type="text" name="title" required />
                         </div>
                         <div class="form_part">
                             <label for="content">内容</label><br>
-                            <textarea name="content" class="aside_textarea" wrap="soft"></textarea>
+                            <textarea name="content" class="aside_textarea" wrap="soft" required ></textarea>
                         </div>
                         <div class="form_part">
                             <label for="file" class="image_select">
@@ -108,7 +108,7 @@
                                 <form action="comments/create" method="POST">
                                     <div class="form_part">
                                         <label for="body">コメント</label><br>
-                                        <input type="text" name="body" class="comment_form"></input>
+                                        <input type="text" name="body" class="comment_form" required ></input>
                                     </div><br>
                                     <input  type="hidden" name="post_id" value="${post.id}">
                                     <button type="submit" class="post_submit_button">投稿</button>
@@ -139,9 +139,9 @@ function confirmDestroy() {
     }
 }
 $(function(){
-	$('.flush').fadeOut(5000)
-})
+	$('.flush').fadeOut(6000)
+});
 $(function(){
-    $('.errors_post').fadeOut(5000);
-})
+    $('.errors_post').fadeOut(6000);
+});
 </script>
