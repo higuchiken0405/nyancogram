@@ -65,10 +65,10 @@ public class TopPageIndexServlet extends HttpServlet {
 
 	        //セッションオブジェクトからフラッシュ、エラーメッセージを取得し、リクエストオブジェクトに格納
 	        request.setAttribute("flush", request.getSession().getAttribute("flush"));
-	        request.setAttribute("errors_post", request.getSession().getAttribute("errors_post"));
+	        request.setAttribute("errors", request.getSession().getAttribute("errors"));
 	        //セッションオブジェクトからフラッシュ、エラーメッセージを削除
 	        request.getSession().removeAttribute("flush");
-            request.getSession().removeAttribute("errors_post");
+            request.getSession().removeAttribute("errors");
 
 	        //toppageのindex.jspへ移動
 	        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/topPage/index.jsp");
@@ -76,15 +76,13 @@ public class TopPageIndexServlet extends HttpServlet {
 
 	    } else {
 	        //ログインユーザーがnullの時
+	        //セッションオブジェクトからフラッシュ、エラーメッセージを削除
+            request.getSession().removeAttribute("flush");
+            request.getSession().removeAttribute("errors");
 	        //toppageのindex.jspへ移動
 	        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/topPage/index.jsp");
 	        rd.forward(request, response);
 	    }
 
 	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
-	}
-
 }
