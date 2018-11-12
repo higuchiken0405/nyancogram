@@ -82,7 +82,7 @@
                                 <form action="<c:url value='/comments/create' />" method="POST">
                                     <div class="form_part">
                                         <label for="body">コメント</label><br>
-                                        <input type="text" name="body" class="comment_form"></input>
+                                        <input type="text" name="body" class="comment_form" required ></input>
                                     </div><br>
                                     <input  type="hidden" name="post_id" value="${post.id}">
                                     <input  type="hidden" name="user_id" value="${user.id}">

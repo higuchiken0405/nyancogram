@@ -44,6 +44,7 @@ public class UserShowServlet extends HttpServlet {
 	        //パラメータからユーザーIDを取得
 	        user_id = Integer.parseInt(request.getParameter("id"));
 	    }
+
 	    //セッションオブジェクトからログインユーザーのIDを取得
 	    User login_user = (User) request.getSession().getAttribute("login_user");
 	    Integer login_user_id = login_user.getId();
@@ -55,6 +56,9 @@ public class UserShowServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/");
             return;
 	    }
+
+
+	    //セッションオブジェクトから取り出したユーザーIDとログインユーザーIDが一致しない場合
 	    //パラメータから取得したIDで検索した結果を格納
 	    User user = em.find(User.class, user_id);
 
@@ -79,6 +83,7 @@ public class UserShowServlet extends HttpServlet {
                                                         .getResultList();
 
             if(posts != null) {
+                //ポストを検索した結果がnullではない時
                 for(Post post:posts) {
                     //「ポストに対するお気に入りの数を取得する」クエリを実行した結果を格納
                     Long favorite_count = em.createNamedQuery("getFavoriteCounts", Long.class)
@@ -86,7 +91,7 @@ public class UserShowServlet extends HttpServlet {
                                                         .getSingleResult();
                     //結果をポストにセット
                     post.setFavorite_count(favorite_count);
-                    //文字列を改行で分けて配列に変換し、セットする
+                    //投稿内容を改行で分けて配列に変換し、セットする
                     post.setContent_array(StringToArray.contentToArray(post));
                 }
             }
@@ -98,6 +103,13 @@ public class UserShowServlet extends HttpServlet {
 	        request.getSession().setAttribute("user", user);
             request.setAttribute("posts", posts);
             request.setAttribute("comments", comments);
+
+            //セッションオブジェクトからフラッシュ、エラーメッセージを取得し、リクエストオブジェクトに格納
+            request.setAttribute("flush", request.getSession().getAttribute("flush"));
+            request.setAttribute("errors", request.getSession().getAttribute("errors"));
+            //セッションオブジェクトからフラッシュ、エラーメッセージを削除
+            request.getSession().removeAttribute("flush");
+            request.getSession().removeAttribute("errors");
 
 	        //show.jspに移動
 	        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/users/show.jsp");
