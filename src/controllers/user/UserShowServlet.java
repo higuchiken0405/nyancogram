@@ -33,7 +33,6 @@ public class UserShowServlet extends HttpServlet {
 	    Integer user_id = 0;
 	    //セッションオブジェクトからユーザーを取得
 	    User show_user = (User) request.getSession().getAttribute("user");
-	    System.out.println(show_user);
 
 	    if(show_user != null) {
 	        //セッションオブジェクトから取得したユーザーのIDを取得
@@ -70,7 +69,6 @@ public class UserShowServlet extends HttpServlet {
 	    } else if (!user.equals(request.getSession().getAttribute("login_user"))) {
 	        //取得したuserがログインユーザーと一致しない場合
 
-            System.out.println("DBに接続");
             //「詳細ページのユーザーが投稿したポストを全て取得する」クエリを実行した結果を格納
             List<Post> posts = em.createNamedQuery("getAllMyPosts", Post.class)
                                                         .setParameter("user_id", user.getId())
@@ -100,6 +98,7 @@ public class UserShowServlet extends HttpServlet {
 	        request.getSession().setAttribute("user", user);
             request.setAttribute("posts", posts);
             request.setAttribute("comments", comments);
+
 	        //show.jspに移動
 	        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/users/show.jsp");
 	        rd.forward(request, response);

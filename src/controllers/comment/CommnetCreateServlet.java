@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import models.Comment;
 import models.Post;
 import models.User;
+import models.validators.CommentValidator;
 import utils.DBUtil;
 
 @WebServlet("/comments/create")
@@ -34,6 +36,8 @@ public class CommnetCreateServlet extends HttpServlet {
 	    //パラメータからコメント内容、投稿のIDを取得
 	    String body = request.getParameter("body");
 	    Integer post_id = Integer.parseInt(request.getParameter("post_id"));
+
+
 	    //エンティティマネージャを生成
 	    EntityManager em = DBUtil.createEntityManger();
 	    //パラメータから取得した投稿のIDで検索した結果を格納
@@ -51,25 +55,48 @@ public class CommnetCreateServlet extends HttpServlet {
 	    comment.setCreated_at(current_time);
 	    comment.setUpdated_at(current_time);
 
-	    //トランザクション開始
-	    em.getTransaction().begin();
-	    //DBに登録
-	    em.persist(comment);
-	    //登録をコミット
-	    em.getTransaction().commit();
-	    //エンティティマネージャを終了
-	    em.close();
+	    List<String> errors = CommentValidator.validate(comment);
+	    if(errors.size() > 0) {
+	        //エラーメッセージがある場合
+	        //エンティティマネージャを終了
+	        em.close();
+	        //エラーメッセージをセッションオブジェクトに格納
+	        request.getSession().setAttribute("errors", errors);
+	        try {
+	            //詳細ページから送られてきたユーザーIDをセッションオブジェクトに保存
+	            request.getSession().setAttribute("user_id",request.getParameter("user_id"));
+	            //元のページにリダイレクト
+	            response.sendRedirect(new URI(request.getHeader("referer")).getPath());
+	        } catch (URISyntaxException e) {
+	            //エラー詳細表示
+	            e.printStackTrace();
+	            //トップページに戻る
+	            response.sendRedirect(request.getContextPath() + "/");
+	        }
+	    } else {
 
-        try {
-            //詳細ページから送られてきたユーザーIDをセッションオブジェクトに保存
-            request.getSession().setAttribute("user_id",request.getParameter("user_id"));
-            //元のページにリダイレクト
-            response.sendRedirect(new URI(request.getHeader("referer")).getPath());
-        } catch (URISyntaxException e) {
-            //エラー詳細表示
-            e.printStackTrace();
-            //トップページに戻る
-            response.sendRedirect(request.getContextPath() + "/");
-        }
+	        //トランザクション開始
+	        em.getTransaction().begin();
+	        //DBに登録
+	        em.persist(comment);
+	        //登録をコミット
+	        em.getTransaction().commit();
+	        //エンティティマネージャを終了
+	        em.close();
+            //フラッシュメッセージをセッションオブジェクトに保存
+	        request.getSession().setAttribute("flush", "コメントの登録に成功しました");
+	        try {
+	            //詳細ページから送られてきたユーザーIDをセッションオブジェクトに保存
+	            request.getSession().setAttribute("user_id",request.getParameter("user_id"));
+	            //元のページにリダイレクト
+	            response.sendRedirect(new URI(request.getHeader("referer")).getPath());
+	        } catch (URISyntaxException e) {
+	            //エラー詳細表示
+	            e.printStackTrace();
+	            //トップページに戻る
+	            response.sendRedirect(request.getContextPath() + "/");
+	        }
+
+	    }
 	}
 }

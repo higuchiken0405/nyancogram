@@ -13,7 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @NamedQueries ({
@@ -42,9 +41,6 @@ public class Comment {
     @Lob
     @Column(name="body", length=140, nullable=false)
     private String body;
-
-    @Transient
-    private String[] body_array;
 
     @ManyToOne
     @JoinColumn(name="user_id", nullable=false)
@@ -109,13 +105,6 @@ public class Comment {
 
     public void setUpdated_at(Timestamp updated_at) {
         this.updated_at = updated_at;
-    }
-    public String[] getBody_array() {
-        return body_array;
-    }
-
-    public void setBody_array(String[] body_array) {
-        this.body_array = body_array;
     }
 
 
