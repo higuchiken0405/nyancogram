@@ -53,6 +53,15 @@ public class PostIndexServlet extends HttpServlet {
 	    //リクエストオブジェクトに実行結果を格納
 	    request.setAttribute("posts", posts);
 	    request.setAttribute("comments", comments);
+
+        //セッションオブジェクトからフラッシュ、エラーメッセージを取得し、リクエストオブジェクトに格納
+        request.setAttribute("flush", request.getSession().getAttribute("flush"));
+        request.setAttribute("errors", request.getSession().getAttribute("errors"));
+        //セッションオブジェクトからフラッシュ、エラーメッセージを削除
+        request.getSession().removeAttribute("flush");
+        request.getSession().removeAttribute("errors");
+
+
 	    //投稿一覧画面へ遷移
 	    RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/posts/index.jsp");
 	    rd.forward(request, response);

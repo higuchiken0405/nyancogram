@@ -2,6 +2,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="../layout/app.jsp">
     <c:param name="content">
+            <c:if test="${flush != null}" >
+                <div class="message">
+                    <div class="flush">
+                        <c:out value="${flush}" />
+                    </div>
+                </div>
+            </c:if>
+            <c:if test="${errors != null}" >
+                <div class="message">
+                    <div class="errors_post">
+                        <c:forEach var="error" items="${errors}">
+                            <span>・ <c:out value="${error}" /></span>&ensp;
+                        </c:forEach>
+                    </div>
+                </div>
+            </c:if>
         <div class="container container_main clearfix">
             <aside class="aside">
                 <c:import url="../topPage/_aside.jsp" />
@@ -86,7 +102,7 @@
                                 <form action="<c:url value='/comments/create' />" method="POST">
                                     <div class="form_part">
                                         <label for="body">コメント</label><br>
-                                        <input type="text" name="body" class="comment_form"></input>
+                                        <input type="text" name="body" class="comment_form" required ></input>
                                     </div><br>
                                     <input  type="hidden" name="post_id" value="${post.id}">
                                     <button type="submit" class="post_submit_button">投稿</button>
@@ -105,5 +121,11 @@ $(function(){
     $(".comment_icon").on("click", function() {
         $(this).parents(".post_index_container").next().slideToggle();
     });
+});
+$(function(){
+    $('.flush').fadeOut(6000)
+});
+$(function(){
+    $('.errors_post').fadeOut(6000);
 });
 </script>
