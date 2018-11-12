@@ -76,6 +76,8 @@ public class TopPageIndexServlet extends HttpServlet {
 
 	    } else {
 	        //ログインユーザーがnullの時
+	        //セッションオブジェクトからフラッシュメッセージを取得し、リクエストオブジェクトに格納
+	        request.setAttribute("flush", request.getSession().getAttribute("flush"));
 	        //セッションオブジェクトからフラッシュ、エラーメッセージを削除
             request.getSession().removeAttribute("flush");
             request.getSession().removeAttribute("errors");
