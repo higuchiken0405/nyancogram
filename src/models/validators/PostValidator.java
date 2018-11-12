@@ -31,7 +31,7 @@ public class PostValidator {
     private static String titleValidate(String title) {
 
         if(title == null || title.equals("")) {
-            return "タイトルの入力してください";
+            return "タイトルを入力してください";
         }
         return "";
     }
