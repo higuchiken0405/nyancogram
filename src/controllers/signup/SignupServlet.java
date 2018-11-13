@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import models.User;
 import models.validators.SignupValidator;
 import utils.DBUtil;
+import utils.EncryptUtil;
 
 @WebServlet("/signup")
 public class SignupServlet extends HttpServlet {
@@ -43,6 +44,17 @@ public class SignupServlet extends HttpServlet {
 	    String password = request.getParameter("password");
 	    String password_confirmation = request.getParameter("password_confirmation");
 
+	    String error = SignupValidator.passwordConfirmationValidate(password, password_confirmation);
+	    if(error.length() > 0) {
+            //エラーメッセージをリクエストオブジェクトに格納
+            request.setAttribute("error", error);
+            //signup.jspに戻る
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/topPage/signup.jsp");
+            rd.forward(request, response);
+
+	        return;
+	    }
+
 
 	    //Userクラスのインスタンス化
 	    User user = new User();
@@ -51,8 +63,12 @@ public class SignupServlet extends HttpServlet {
 	    user.setGender(gender);
 	    user.setArea(area);
 	    user.setEmail(email);
-	    user.setPassword(password);
-	    user.setPassword_confirmation(password_confirmation);
+	    user.setPassword(
+	            EncryptUtil.getPasswordEncrypt(
+	                    password,
+	                    (String) this.getServletContext().getAttribute("salt")
+	                    )
+	            );
 	    if(gender.equals("♂")) {
 	        //性別が♂だった場合、アイコンにdefault_male.pngをセット
 	        user.setIcon("default_male.png");
@@ -69,7 +85,7 @@ public class SignupServlet extends HttpServlet {
         String[] errors = SignupValidator.validate(user);
 
         if(errors[0].length() > 0 || errors[1].length() > 0
-                || errors[2].length() > 0 || errors[3].length() > 0) {
+                || errors[2].length() > 0) {
 
             //エラーメッセージがある場合
             //エンティティマネージャを終了

@@ -220,22 +220,6 @@ img.user_icon {
     color: rgba(220, 220, 200, 1);
     background-color: rgba(30, 30, 30, 0.8);
 }
-
-
-
-
-a.to_login {
-    margin-top: 20px;
-    display: inline-block;
-}
-a.to_signup {
-    margin-top: 20px;
-    display: inline-block;
-}
-
-
-
-
 /*************************
 **** トップページ設定 ****
 **************************/
@@ -356,7 +340,7 @@ label.image_select:hover {
     background-color: rgba(156, 213, 255, 0.9);
 }
 /**********************
-******* 投稿ボタン *******
+******* 投稿ボタン(submit) *******
 ************************/
 button.post_submit_button {
     padding: 10px 25px 10px 25px;
@@ -457,13 +441,29 @@ h3.post_title {
 	padding: 0 15px 5px 15px;
 	font-size: 18px;
 }
-img.post_img {
-	width: 300px;
-	border-radius: 5px;
+.destroy_icon span.cross {
+    border:2px solid black;
+    border-radius: 5px;
+    padding: 0 5px;
+    font-size: 30px;
+    color: black;
+
+}
+.destroy_icon span.cross:hover {
+    text-decoration: none;
+    color: white;
+    background-color: black;
+}
+.destroy_icon a {
+	text-decoration: none;
 }
 /**************************************
 *****  コメント、いいねのアイコン  ********
 **************************************/
+img.post_img {
+	width: 300px;
+	border-radius: 5px;
+}
 ul.post_icon_list {
 	list-style: none;
 	text-align: right;

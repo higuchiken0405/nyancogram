@@ -49,9 +49,9 @@ public class UserEditServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/users/edit?id=" + login_user_id);
             return;
 	    }
-	    //Userインスタンスをリクエストオブジェクトに格納
+	    //検索結果のユーザーをリクエストオブジェクトに格納
 	    request.setAttribute("user", user);
-	    //Userのidをセッションオブジェクトに格納
+	    //検索結果のユーザーのidをセッションオブジェクトに格納
 	    request.getSession().setAttribute("user_id", user.getId());
 	    //edit.jspへ移動
 	    RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/users/edit.jsp");

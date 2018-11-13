@@ -41,8 +41,8 @@ public class UserIconServlet extends HttpServlet {
         }
         //セッションオブジェクトからログインユーザー情報を取得し、ユーザー名を画像名に使用
         User loginUser = (User) request.getSession().getAttribute("login_user");
-        String userName = loginUser.getName();
-        String name = userName + ".jpg";
+        String email = loginUser.getEmail();
+        String name = email + ".jpg";
 
         String path = getServletContext().getRealPath("/icon") + "/" + name;
         //ファイルの書き込み
@@ -70,7 +70,7 @@ public class UserIconServlet extends HttpServlet {
         em.getTransaction().begin();
         em.getTransaction().commit();
 
-            response.sendRedirect(request.getContextPath() + "/users/edit?id=" + user_id);
+        response.sendRedirect(request.getContextPath() + "/users/edit?id=" + user_id);
 
 	}
 

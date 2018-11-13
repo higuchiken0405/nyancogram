@@ -35,8 +35,8 @@
                 <label for="password">パスワード：</label>
                 <input type="password" name="password" required />
             </div>
-            <c:if test="${errors[3].length() > 0}">
-                <p class="error_msg"><c:out value="${errors[3]}" /></p>
+            <c:if test="${error.length() > 0}">
+                <p class="error_msg"><c:out value="${error}" /></p>
             </c:if>
             <div class="form_part">
                 <label for="password_confirmation">パスワード確認：</label>

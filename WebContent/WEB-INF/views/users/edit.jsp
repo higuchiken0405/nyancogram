@@ -14,17 +14,26 @@
         </form>
 
         <form action="<c:url value='/users/update'/>" method="post">
+             <c:if test="${errors[0].length() > 0}">
+                <p class="error_msg"><c:out value="${errors[0]}" /></p>
+            </c:if>
             <div class="form_part">
                 <label for="name">名前：</label>
                 <input type="text" name="name" value="${user.name}" />
             </div>
+            <c:if test="${errors[1].length() > 0}">
+                <p class="error_msg"><c:out value="${errors[1]}" /></p>
+            </c:if>
             <div class="form_part">
                 <label for="email">メールアドレス：</label>
                 <input type="text" name="email" value="${user.email}"/>
             </div>
+            <c:if test="${errors[2].length() > 0}">
+                <p class="error_msg"><c:out value="${errors[2]}" /></p>
+            </c:if>
             <div class="form_part">
                 <label for="password">パスワード：</label>
-                <input type="password" name="password" value="${user.password}"/>
+                <input type="password" name="password"/>
             </div>
             <button type="submit">Update</button>
         </form>

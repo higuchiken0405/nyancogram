@@ -11,12 +11,11 @@ public class SignupValidator {
     //エラーメッセージを取得するメソッド
     public static String[] validate(User user) {
 
-        String[] errors = new String[4];
+        String[] errors = new String[3];
 
         errors[0] = nameValidate(user.getName());
         errors[1] = emailValidate(user.getEmail());
         errors[2] = passwordValidate(user.getPassword());
-        errors[3] = passwordConfirmationValidate(user.getPassword(), user.getPassword_confirmation());
 
         return errors;
 
@@ -43,7 +42,7 @@ public class SignupValidator {
             //エンティティマネージャを生成
             EntityManager em = DBUtil.createEntityManager();
             //「入力したメールアドレスが登録されている数を取得する」クエリを実行し、結果を格納
-            Long mail_count = em.createNamedQuery("checkLoginMail", Long.class)
+            Long mail_count = em.createNamedQuery("checkRegisteredMail", Long.class)
                                                         .setParameter("email", email)
                                                         .getSingleResult();
             if(mail_count > 0) {
@@ -67,7 +66,7 @@ public class SignupValidator {
     }
 
     //パスワードとパスワード確認が同じが確認するメソッド
-    private static String passwordConfirmationValidate(String password, String password_confirmation) {
+    public static String passwordConfirmationValidate(String password, String password_confirmation) {
         if(password != null && !password.equals("")) {
             //パスワードが入力された時
             if(password_confirmation == null || password_confirmation.equals("")) {
