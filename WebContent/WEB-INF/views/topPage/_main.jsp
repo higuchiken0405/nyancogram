@@ -62,7 +62,11 @@
                                 <h3 class="post_title"><c:out value="${post.title}" /></h3>
                                 <p><c:out value="${post.created_at}" /></p>
                                 <c:if test="${post.user.id == sessionScope.login_user.id}">
-                                    <p class="destorty_icon"><a href="#" onclick="confirmDestroy();">×</a></p>
+                                    <div class="destroy_icon">
+                                        <a href="#" onclick="confirmDestroy();">
+                                            <span class="cross">×</span>
+                                        </a>
+                                    </div>
                                     <form action="<c:url value='/posts/destroy' />" method="POST">
                                         <input type="hidden" name="post_id" value="${post.id}">
                                     </form>

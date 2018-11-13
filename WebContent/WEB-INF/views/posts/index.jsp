@@ -45,6 +45,16 @@
                                         <span class="post_index_time"><c:out value="${post.created_at}" /></span>
                                     </li>
                                 </ul>
+                                <c:if test="${post.user.id == sessionScope.login_user.id}">
+                                    <div class="destroy_icon">
+                                        <a href="#" onclick="confirmDestroy();">
+                                            <span class="cross">×</span>
+                                        </a>
+                                    </div>
+                                    <form action="<c:url value='/posts/destroy' />" method="POST">
+                                        <input type="hidden" name="post_id" value="${post.id}">
+                                    </form>
+                                </c:if>
                                 <ul class="clearfix">
                                     <li>
                                         <div class="post_index_title_content">
