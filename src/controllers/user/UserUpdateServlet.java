@@ -57,10 +57,17 @@ public class UserUpdateServlet extends HttpServlet {
             //トランザクションを開始し、コミットする。
             em.getTransaction().begin();
             em.getTransaction().commit();
+
+            //コメットした後、 ユーザー情報を再取得する
+            User login_user = em.find(User.class, user.getId());
+
             //エンティティマネージャを終了
             em.close();
             //セッションに格納されているユーザーのidを削除
             request.getSession().removeAttribute("user_id");
+            //セッションオブジェクトのログインユーザー情報を再格納
+            request.getSession().setAttribute("login_user", login_user);
+
             //ユーザーの詳細ページへ移動
             response.sendRedirect(request.getContextPath() + "/users/show?id=" + user.getId());
         }

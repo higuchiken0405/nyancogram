@@ -6,11 +6,11 @@
 
         <form action="<c:url value='/users/icon'/>" method="POST" enctype="multipart/form-data">
             <div class="form_part">
-                <img src="<c:url value='/icon/${sessionScope.login_user.icon}' />" class="user_icon"><br>
+                <img src="<c:url value='/icon/${user.icon}' />" class="user_icon"><br>
                 <label for="file"></label>
                 <input type="file" name="icon" accept="image/*">
             </div>
-            <button type="submit">アイコン変更</button>
+            <button type="submit" class="icon_button">アイコン変更</button>
         </form>
 
         <form action="<c:url value='/users/update'/>" method="post">
