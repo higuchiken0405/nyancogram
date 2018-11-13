@@ -60,7 +60,17 @@
                         <div class="post_comment_container">
                             <div class="post_container">
                                 <h3 class="post_title"><c:out value="${post.title}" /></h3>
-                                <p><c:out value="${post.created_at}" /></p>
+                                <c:choose>
+                                    <c:when test="${post.time_msg.equals('new')}">
+                                        <p class="time_msg_new">${post.time_msg}<p>
+                                    </c:when>
+                                    <c:when test="${post.time_msg.contains('時間前')}" >
+                                        <p class="time_msg_oneday">${post.time_msg}</p>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <p class="time_msg">${post.time_msg}</p>
+                                    </c:otherwise>
+                                </c:choose>
                                 <c:if test="${post.user.id == sessionScope.login_user.id}">
                                     <div class="destroy_icon">
                                         <a href="#" onclick="confirmDestroy();">

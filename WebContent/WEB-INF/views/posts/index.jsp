@@ -42,7 +42,17 @@
                                                 <c:out value="${post.user.name}" />
                                             </span>
                                         </a>
-                                        <span class="post_index_time"><c:out value="${post.created_at}" /></span>
+                                       <c:choose>
+                                        <c:when test="${post.time_msg.equals('new')}">
+                                            <p class="time_msg_new">${post.time_msg}<p>
+                                        </c:when>
+                                        <c:when test="${post.time_msg.contains('時間前')}" >
+                                            <p class="time_msg_oneday">${post.time_msg}</p>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <p class="time_msg">${post.time_msg}</p>
+                                        </c:otherwise>
+                                    </c:choose>
                                     </li>
                                 </ul>
                                 <c:if test="${post.user.id == sessionScope.login_user.id}">

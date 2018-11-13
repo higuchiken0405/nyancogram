@@ -441,6 +441,34 @@ h3.post_title {
 	padding: 0 15px 5px 15px;
 	font-size: 18px;
 }
+/**************************************
+*****   投稿時間(new,何時間前、何年何月何日 ********
+**************************************/
+p.time_msg_new {
+	font-size: 20px;
+	font-weight: bold;
+	color: yellow;
+	display: inine-box;
+	text-shadow: 1px 1px 0 #000,
+                -1px 1px 0 #000,
+                1px -1px 0 #000,
+                -1px -1px 0 #000;
+    text-shadow: 1px 1px 0 #000,
+                -1px 1px 0 #000,
+                1px -1px 0 #000,
+                -1px -1px 0 #000;
+}
+
+.time_msg_oneday {
+	font-size: 20px;
+    font-weight: bold;
+    display: inine-box;
+}
+
+
+/**************************************
+*****   削除のアイコン  ********
+**************************************/
 .destroy_icon span.cross {
     border:2px solid black;
     border-radius: 5px;

@@ -62,17 +62,14 @@ public class Post {
     private Long favorite_count;
 
 
+    @Transient
+    private String time_msg;
+
+
     public Integer getId() {
         return id;
     }
 
-    public Long getFavorite_count() {
-        return favorite_count;
-    }
-
-    public void setFavorite_count(Long favorite_count) {
-        this.favorite_count = favorite_count;
-    }
 
     public void setId(Integer id) {
         this.id = id;
@@ -132,6 +129,24 @@ public class Post {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Long getFavorite_count() {
+        return favorite_count;
+    }
+
+    public void setFavorite_count(Long favorite_count) {
+        this.favorite_count = favorite_count;
+    }
+
+
+    public String getTime_msg() {
+        return time_msg;
+    }
+
+
+    public void setTime_msg(String time_msg) {
+        this.time_msg = time_msg;
     }
 
 

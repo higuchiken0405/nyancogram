@@ -16,6 +16,7 @@ import models.Post;
 import models.StringToArray;
 import models.User;
 import utils.DBUtil;
+import utils.TimeCalc;
 
 @WebServlet("/index.html")
 public class TopPageIndexServlet extends HttpServlet {
@@ -54,11 +55,14 @@ public class TopPageIndexServlet extends HttpServlet {
 	                post.setFavorite_count(favorite_count);
 	                //内容を改行で分けて配列に変換し、セットする
 	                post.setContent_array(StringToArray.contentToArray(post));
+	                //現在時刻と投稿時刻に差分によるメッセージを取得し、セットする
+	                post.setTime_msg(TimeCalc.returnMsg(post.getCreated_at()));
 	            }
 	        }
 
 	        //エンティティマネージャを終了
 	        em.close();
+
 
 	        //検索結果postsをリクエストオブジェクトに格納
 	        request.setAttribute("posts", posts);
