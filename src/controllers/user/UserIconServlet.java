@@ -54,7 +54,7 @@ public class UserIconServlet extends HttpServlet {
         }
 
         //エンティティを生成
-        EntityManager em = DBUtil.createEntityManger();
+        EntityManager em = DBUtil.createEntityManager();
         //セッションオブジェクから取得したのユーザーID番号で検索した結果を格納
         User user = em.find(User.class, user_id);
 
@@ -67,8 +67,8 @@ public class UserIconServlet extends HttpServlet {
         //ユーザーのアイコン画像名をセット
         user.setIcon(name);
 
-            em.getTransaction().begin();
-            em.getTransaction().commit();
+        em.getTransaction().begin();
+        em.getTransaction().commit();
 
             response.sendRedirect(request.getContextPath() + "/users/edit?id=" + user_id);
 

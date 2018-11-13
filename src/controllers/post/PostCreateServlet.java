@@ -83,7 +83,7 @@ public class PostCreateServlet extends HttpServlet {
         } else {
 
             //エンティティマネージャの生成
-            EntityManager em = DBUtil.createEntityManger();
+            EntityManager em = DBUtil.createEntityManager();
 
             //トランザクション開始
             em.getTransaction().begin();

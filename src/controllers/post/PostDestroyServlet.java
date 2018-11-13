@@ -31,7 +31,7 @@ public class PostDestroyServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 	    //エンティティマネージャを生成
-	    EntityManager em = DBUtil.createEntityManger();
+	    EntityManager em = DBUtil.createEntityManager();
 
 	    //パラメータからポストのIDを取得
 	    Integer post_id =  Integer.parseInt(request.getParameter("post_id"));

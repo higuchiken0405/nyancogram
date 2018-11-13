@@ -29,7 +29,7 @@ public class FavoriteCreateServlet extends HttpServlet {
         //パラメータからポストのidを受け取る
         Integer post_id = Integer.parseInt(request.getParameter("post_id"));
         //エンティティマネージャを生成
-        EntityManager em = DBUtil.createEntityManger();
+        EntityManager em = DBUtil.createEntityManager();
         //パラーメータから取得したポストidで検索した結果を格納
         Post post = em.find(Post.class, post_id);
         //セッションオブジェクトからログインユーザーを取得

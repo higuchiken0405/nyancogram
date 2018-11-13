@@ -27,7 +27,7 @@ public class UserUpdateServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 	    //エンティティマネージャの生成
-	    EntityManager em = DBUtil.createEntityManger();
+	    EntityManager em = DBUtil.createEntityManager();
 	    //セッションから取得したユーザーidの値で検索した結果を取得
 	    User user = em.find(User.class, (Integer)(request.getSession().getAttribute("user_id")));
 	    //パラメータを取得

@@ -33,7 +33,7 @@ public class SignupServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 	    //EntityMangerの生成
-	    EntityManager em = DBUtil.createEntityManger();
+	    EntityManager em = DBUtil.createEntityManager();
 	    //パラメータから値を取得
 	    String name = request.getParameter("name");
 	    String gender = request.getParameter("gender");

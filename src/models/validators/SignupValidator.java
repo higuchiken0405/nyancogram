@@ -41,7 +41,7 @@ public class SignupValidator {
         } else {
             //メールアドレスが入力されていた時
             //エンティティマネージャを生成
-            EntityManager em = DBUtil.createEntityManger();
+            EntityManager em = DBUtil.createEntityManager();
             //「入力したメールアドレスが登録されている数を取得する」クエリを実行し、結果を格納
             Long mail_count = em.createNamedQuery("checkLoginMail", Long.class)
                                                         .setParameter("email", email)

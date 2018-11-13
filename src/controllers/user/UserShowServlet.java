@@ -28,7 +28,7 @@ public class UserShowServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 	    //EntityManagerを生成
-	    EntityManager em = DBUtil.createEntityManger();
+	    EntityManager em = DBUtil.createEntityManager();
 	    //ユーザーIDを定義
 	    Integer user_id = 0;
 	    //セッションオブジェクトからユーザーを取得

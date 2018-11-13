@@ -39,7 +39,7 @@ public class CommnetCreateServlet extends HttpServlet {
 
 
 	    //エンティティマネージャを生成
-	    EntityManager em = DBUtil.createEntityManger();
+	    EntityManager em = DBUtil.createEntityManager();
 	    //パラメータから取得した投稿のIDで検索した結果を格納
 	    Post post = em.find(Post.class, post_id);
 	    //セッションからログインユーザー情報を取得

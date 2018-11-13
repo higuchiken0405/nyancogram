@@ -24,7 +24,7 @@ public class UserEditServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 	    //エンティティマネージャを生成
-	    EntityManager em = DBUtil.createEntityManger();
+	    EntityManager em = DBUtil.createEntityManager();
         //パラメータからユーザーIDを取得
         Integer user_id = Integer.parseInt(request.getParameter("id"));
         //セッションオブジェクトからログインユーザーのIDを取得

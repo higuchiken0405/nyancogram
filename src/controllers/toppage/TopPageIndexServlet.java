@@ -33,7 +33,7 @@ public class TopPageIndexServlet extends HttpServlet {
 	    if(login_user != null) {
 	        //ログインユーザーがnullではない時
 	        //エンティティマネージャの生成
-	        EntityManager em = DBUtil.createEntityManger();
+	        EntityManager em = DBUtil.createEntityManager();
 	        //「自分が投稿したポストを全て取得する」クエリを実行した結果を格納
 	        List<Post> posts = em.createNamedQuery("getAllMyPosts", Post.class)
 	                                                    .setParameter("user_id", login_user.getId())

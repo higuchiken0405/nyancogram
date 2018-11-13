@@ -28,7 +28,7 @@ public class PostIndexServlet extends HttpServlet {
 
 
 	    //エンティティマネージャの生成
-	    EntityManager em = DBUtil.createEntityManger();
+	    EntityManager em = DBUtil.createEntityManager();
 	    //「全ての投稿を取得する」クエリを実行した結果を取得
 	    List<Post> posts = em.createNamedQuery("getAllPosts", Post.class).getResultList();
 	    //「全てのコメントを取得する」クエリを実行した結果を取得

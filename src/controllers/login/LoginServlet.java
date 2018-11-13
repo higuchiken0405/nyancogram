@@ -57,7 +57,7 @@ public class LoginServlet extends HttpServlet {
         if(email != null && !email.equals("") && password != null && !password.equals("")) {
             //パラメータがnullか空ではない時
             //エンティティマネージャの生成
-            EntityManager em = DBUtil.createEntityManger();
+            EntityManager em = DBUtil.createEntityManager();
 
             try {
                 //「セットした値のメールアドレスとパスワードを持つユーザーを取得」クエリを実行した結果を格納
