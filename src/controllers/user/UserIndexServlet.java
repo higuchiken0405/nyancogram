@@ -24,6 +24,7 @@ public class UserIndexServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+
 	    //エンティティマネージャの生成
 	    EntityManager em = DBUtil.createEntityManager();
 	    //「全ユーザー情報を取得する」クエリを実行した結果を取得

@@ -28,6 +28,7 @@ public class UserShowServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+
 	    //EntityManagerを生成
 	    EntityManager em = DBUtil.createEntityManager();
 	    //ユーザーIDを定義
@@ -49,6 +50,7 @@ public class UserShowServlet extends HttpServlet {
 	    //セッションオブジェクトからログインユーザーのIDを取得
 	    User login_user = (User) request.getSession().getAttribute("login_user");
 	    Integer login_user_id = login_user.getId();
+
 	    if(user_id == login_user_id) {
 	        //パラーメータのIDとログインユーザーのIDが一致する時
 	        //エンティティマネージャを終了
@@ -103,7 +105,8 @@ public class UserShowServlet extends HttpServlet {
 	        em.close();
 
 	        //検索結果のuserをセッションオブジェクトに、posts、commentsをリクエストオブジェクトに格納
-	        request.getSession().setAttribute("user", user);
+	        //request.getSession().setAttribute("user", user);
+	        request.setAttribute("user", user);
             request.setAttribute("posts", posts);
             request.setAttribute("comments", comments);
 

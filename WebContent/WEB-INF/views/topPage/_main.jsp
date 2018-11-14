@@ -49,7 +49,7 @@
                         <div class="form_part">
                             <label for="file" class="image_select">
                                 + 投稿画像を選択
-                                <input type="file" name="file" accept="image/*" id="file" style="display:none;">
+                                <input type="file" name="file" accept="image/*" id="file" style="display:none;" >
                             </label>
                         </div><br>
                         <button type="submit" class="post_submit_button">投稿</button>

@@ -18,7 +18,7 @@
                     <c:if test="${user.id != sessionScope.login_user.id}">
                     <ul class="user_index_list">
                         <li>
-                            <a href="<c:url value='/users/show?id=${user.id}' />" class="users_idex_link">
+                            <a href="<c:url value='/users/show?id=${user.id}'/>" class="users_idex_link">
                             <span class="users_index">
                                 <img src="<c:url  value='/icon/${user.icon}'/>" class="users_index_icon">
                                 <c:out value="${user.name}" />&nbsp;さん

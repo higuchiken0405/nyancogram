@@ -24,6 +24,7 @@ public class TopPageIndexServlet extends HttpServlet {
 
     public TopPageIndexServlet() {
         super();
+
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
