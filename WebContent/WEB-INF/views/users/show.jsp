@@ -38,7 +38,17 @@
                         <div class="post_comment_container">
                             <div class="post_container">
                                 <h3 class="post_title"><c:out value="${post.title}" /></h3>
-                                <p><c:out value="${post.created_at}" /></p>
+                                <c:choose>
+                                    <c:when test="${post.time_msg.equals('new')}">
+                                        <span class="time_msg_new">${post.time_msg}</span>
+                                    </c:when>
+                                    <c:when test="${post.time_msg.contains('時間前')}" >
+                                        <span class="time_msg_oneday">${post.time_msg}</span>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <span class="time_msg">${post.time_msg}</span>
+                                    </c:otherwise>
+                                </c:choose>
                                 <c:forEach var="content" items="${post.content_array}" >
                                     <p class="post_conetnt"><c:out value="${content}" /></p>
                                 </c:forEach>

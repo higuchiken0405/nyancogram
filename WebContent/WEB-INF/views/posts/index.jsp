@@ -34,37 +34,37 @@
                     <c:forEach var="post" items="${posts}">
                         <div class="post_comment_container">
                             <div class="post_index_container">
-                                <ul class="post_index_user_time">
+                                <ul class="post_container_list">
                                     <li>
-                                        <a href="<c:url value='/users/show?id=${post.user.id}' />">
-                                            <span class="post_index_user">
-                                                <img src="<c:url value='/icon/${post.user.icon}' />" class="post_user_icon">
-                                                <c:out value="${post.user.name}" />
-                                            </span>
-                                        </a>
-                                       <c:choose>
-                                        <c:when test="${post.time_msg.equals('new')}">
-                                            <p class="time_msg_new">${post.time_msg}<p>
-                                        </c:when>
-                                        <c:when test="${post.time_msg.contains('時間前')}" >
-                                            <p class="time_msg_oneday">${post.time_msg}</p>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <p class="time_msg">${post.time_msg}</p>
-                                        </c:otherwise>
-                                    </c:choose>
+                                        <c:choose>
+                                            <c:when test="${post.time_msg.equals('new')}">
+                                                <span class="time_msg_new">${post.time_msg}</span>
+                                            </c:when>
+                                            <c:when test="${post.time_msg.contains('時間前')}" >
+                                                <span class="time_msg_oneday">${post.time_msg}</span>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <span class="time_msg">${post.time_msg}</span>
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <c:if test="${post.user.id == sessionScope.login_user.id}">
+                                            <div class="destroy_icon">
+                                                <a href="#" onclick="confirmDestroy();">
+                                                    <span class="cross">×</span>
+                                                </a>
+                                            </div>
+                                            <form action="<c:url value='/posts/destroy' />" method="POST">
+                                                <input type="hidden" name="post_id" value="${post.id}">
+                                            </form>
+                                        </c:if>
                                     </li>
                                 </ul>
-                                <c:if test="${post.user.id == sessionScope.login_user.id}">
-                                    <div class="destroy_icon">
-                                        <a href="#" onclick="confirmDestroy();">
-                                            <span class="cross">×</span>
-                                        </a>
-                                    </div>
-                                    <form action="<c:url value='/posts/destroy' />" method="POST">
-                                        <input type="hidden" name="post_id" value="${post.id}">
-                                    </form>
-                                </c:if>
+                                <a href="<c:url value='/users/show?id=${post.user.id}' />">
+                                    <span class="post_index_user">
+                                        <img src="<c:url value='/icon/${post.user.icon}' />" class="post_user_icon">
+                                        <c:out value="${post.user.name}" />
+                                    </span>
+                                </a>
                                 <ul class="clearfix">
                                     <li>
                                         <div class="post_index_title_content">

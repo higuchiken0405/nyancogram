@@ -16,6 +16,7 @@ import models.Post;
 import models.StringToArray;
 import models.User;
 import utils.DBUtil;
+import utils.TimeCalc;
 
 @WebServlet("/users/show")
 public class UserShowServlet extends HttpServlet {
@@ -93,6 +94,8 @@ public class UserShowServlet extends HttpServlet {
                     post.setFavorite_count(favorite_count);
                     //投稿内容を改行で分けて配列に変換し、セットする
                     post.setContent_array(StringToArray.contentToArray(post));
+                    //現在時刻と投稿時刻に差分によるメッセージを取得し、セットする
+                    post.setTime_msg(TimeCalc.returnMsg(post.getCreated_at()));
                 }
             }
 
