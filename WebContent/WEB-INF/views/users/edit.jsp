@@ -35,6 +35,7 @@
                 <label for="password">パスワード：</label>
                 <input type="password" name="password"/>
             </div>
+            <input type="hidden" name="_token" value="${_token}">
             <button type="submit">Update</button>
         </form>
         <p><a href="<c:url value='/'/>">メインへ戻る</a></p>

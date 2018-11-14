@@ -52,6 +52,7 @@
                                 <input type="file" name="file" accept="image/*" id="file" style="display:none;" >
                             </label>
                         </div><br>
+                        <input type="hidden" name="_token" value="${_token}">
                         <button type="submit" class="post_submit_button">投稿</button>
                     </form>
                 </div>
@@ -79,6 +80,7 @@
                                                 </a>
                                             </div>
                                             <form action="<c:url value='/posts/destroy'/>" method="POST">
+                                                <input type="hidden" name="_token" value="${_token}">
                                                 <input type="hidden" name="post_id" value="${post.id}">
                                             </form>
                                         </c:if>

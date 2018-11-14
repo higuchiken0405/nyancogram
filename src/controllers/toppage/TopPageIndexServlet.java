@@ -76,6 +76,9 @@ public class TopPageIndexServlet extends HttpServlet {
 	        request.getSession().removeAttribute("flush");
             request.getSession().removeAttribute("errors");
 
+            //セッションIDとトークンとしてリクエストオブジェクトに格納
+            request.setAttribute("_token", request.getSession().getId());
+
 	        //toppageのindex.jspへ移動
 	        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/topPage/index.jsp");
 	        rd.forward(request, response);

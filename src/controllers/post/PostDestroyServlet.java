@@ -30,47 +30,52 @@ public class PostDestroyServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-	    //エンティティマネージャを生成
-	    EntityManager em = DBUtil.createEntityManager();
+	    //トークンをパラメータから取得(クロスサイトリクエストフォージェリ対策)
+        String _token = request.getParameter("_token");
 
-	    //パラメータからポストのIDを取得
-	    Integer post_id =  Integer.parseInt(request.getParameter("post_id"));
-	    //取得したIDで検索した結果のポストを格納
-	    Post post = em.find(Post.class, post_id);
+        if(_token != null && _token.equals(request.getSession().getId())) {
+            //トークンがnullではない　かつ　セッションIDと等しい時
 
-	    //検索したポストに対するコメント一覧を取得
-	    List<Comment> comments = em.createNamedQuery("getPostComments", Comment.class)
-	                                                        .setParameter("post_id", post.getId())
-	                                                        .getResultList();
+            //エンティティマネージャを生成
+            EntityManager em = DBUtil.createEntityManager();
 
-	    //検索したポストに対するいいね一覧を取得
-        List<Favorite> favorites = em.createNamedQuery("getPostFavorites", Favorite.class)
-                                                            .setParameter("post_id", post.getId())
-                                                            .getResultList();
-        //
-	    em.getTransaction().begin();
-	    //いいねをDBから除去
-	    for(Favorite favorite:favorites) {
+            //パラメータからポストのIDを取得
+            Integer post_id =  Integer.parseInt(request.getParameter("post_id"));
+            //取得したIDで検索した結果のポストを格納
+            Post post = em.find(Post.class, post_id);
 
-	            em.remove(favorite);
-	     }
-	    //コメントをDBから除去
-	    for(Comment comment:comments) {
+            //検索したポストに対するコメント一覧を取得
+            List<Comment> comments = em.createNamedQuery("getPostComments", Comment.class)
+                                                                .setParameter("post_id", post.getId())
+                                                                .getResultList();
 
-	        em.remove(comment);
-	    }
-	    //ポストの画像を削除
-	    String path = getServletContext().getRealPath("/uploaded") + "/" + post.getImage();
-	    ImageFindDelete.imageFindDelte(path);
-	    //ポストをDBから除去
-	    em.remove(post);
-	    //除去を確定
-	    em.getTransaction().commit();
-	    //エンティティマネージャを終了
-	    em.close();
+            //検索したポストに対するいいね一覧を取得
+            List<Favorite> favorites = em.createNamedQuery("getPostFavorites", Favorite.class)
+                                                                .setParameter("post_id", post.getId())
+                                                                .getResultList();
+            //
+            em.getTransaction().begin();
+            //いいねをDBから除去
+            for(Favorite favorite:favorites) {
 
-        response.sendRedirect(request.getContextPath() + "/");
+                    em.remove(favorite);
+             }
+            //コメントをDBから除去
+            for(Comment comment:comments) {
 
+                em.remove(comment);
+            }
+            //ポストの画像を削除
+            String path = getServletContext().getRealPath("/uploaded") + "/" + post.getImage();
+            ImageFindDelete.imageFindDelte(path);
+            //ポストをDBから除去
+            em.remove(post);
+            //除去を確定
+            em.getTransaction().commit();
+            //エンティティマネージャを終了
+            em.close();
+
+            response.sendRedirect(request.getContextPath() + "/");
+        }
 	}
-
 }
