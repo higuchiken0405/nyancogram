@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import models.User;
 import models.validators.LoginValidator;
 import utils.DBUtil;
+import utils.EncryptUtil;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -37,7 +38,7 @@ public class LoginServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        //仮のユーザーと定義し、パラメータの値をセット
+        //仮のユーザーを定義し、パラメータの値をセット
         User tentative_user = new User();
         tentative_user.setEmail(email);
         tentative_user.setPassword(password);
@@ -63,8 +64,12 @@ public class LoginServlet extends HttpServlet {
                 //「セットした値のメールアドレスとパスワードを持つユーザーを取得」クエリを実行した結果を格納
                 user = em.createNamedQuery("checkLoginMailAndPass", User.class)
                                             .setParameter("email", email)
-                                            .setParameter("password", password)
+                                            .setParameter("password", EncryptUtil.getPasswordEncrypt(
+                                                    password,
+                                                    (String) this.getServletContext().getAttribute("salt")
+                                                    ))
                                             .getSingleResult();
+
             }catch(NoResultException e) {}
             //エンティティマネージャを終了
             em.close();
