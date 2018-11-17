@@ -31,7 +31,12 @@ div.container {
 li {
 	list-style: none;
 }
-
+/* フロート解除 */
+.clearfix:after {
+    clear: both;
+    content: '';
+    display: block;
+}
 /****************　スマホ時　****************************/
 
 @media(max-width: 670px) {
@@ -94,13 +99,13 @@ header span.logout {
         display: inline;
         float: left;
         margin: 3% 0 0 10%;
-        font-size: 25px;
+        font-size: 10px;
     }
     /* logout */
     header span.logout {
         float: right;
         margin: 1% 15% 0 0;
-        font-size: 140%;
+        font-size: 100%;
     }
 }
 /**************************************************
@@ -305,7 +310,26 @@ p.error_msg {
     }
 }
 /*************************
-**** aside・section設定 ****
+**** メイン画面設定(ログイン時) ****
+**************************/
+
+div.container_main {
+    padding-top: 50px;
+    height: 100%;
+}
+
+@media(max-width: 670px) {
+
+    div.container_main {
+       width: 95%;
+       border: 1px solid blue;
+       padding: 0;
+
+    }
+}
+
+/*************************
+**** aside設定 ****
 **************************/
 aside.aside {
     float: left;
@@ -314,38 +338,7 @@ aside.aside {
     border-right: 1px solid #7F7F7F;
     padding-right: 40px;
 }
-section.section {
-    float: left;
-    width: 60%;
-    margin-left: 30px;
-}
-.clearfix:after {
-    clear: both;
-    content: '';
-    display: block;
-}
-
-a.to_users_edit {
-	text-decoration: none;
-	color: rgba(30, 30, 30, 1);
-	border: 1px solid rgba(30, 30, 30, 1);
-	font-size: 80%;
-	padding: 10px 15px 10px 15px;
-	font-size: 12px;
-	width: 80%;
-}
-a.to_users_edit:hover {
-    text-decoration: none;
-    color: rgba(240, 240, 240, 0.8);
-    background-color: rgba(30, 30, 30, 1);
-    padding: 10px 15px 10px 15px;
-}
-textarea.aside_textarea {
-	height: 100px;
-}
-/*************************
-**** asideのアイコン画像 ****
-**************************/
+/* asideのアイコン画像 */
 img.user_icon {
     width: 150px;
     height: 150px;
@@ -353,11 +346,431 @@ img.user_icon {
     border-radius: 15px;
     margin-bottom: 10px;
 }
+/* ユーザー情報編集画面へのリンク(+hover) */
+a.to_users_edit {
+    text-decoration: none;
+    color: rgba(30, 30, 30, 1);
+    border: 1px solid rgba(30, 30, 30, 1);
+    padding: 10px 15px 10px 15px;
+    font-size: 12px;
+    width: 80%;
+}
+a.to_users_edit:hover {
+    text-decoration: none;
+    color: rgba(240, 240, 240, 0.8);
+    background-color: rgba(30, 30, 30, 1);
+    padding: 10px 15px 10px 15px;
+}
+/*********************  スマホ時    ***************************/
+@media(max-width: 670px) {
+
+    aside.aside {
+        width: 100%;
+        border-bottom: 1px solid #7F7F7F;
+        padding: 20px 0 10px 0;
+        margin: 0 0 0 0;
+    }
+    /* asideのアイコン画像 */
+    img.user_icon {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 15px;
+        margin-bottom: 10px;
+    }
+    /* ユーザー情報編集画面へのリンク(+hover) */
+    a.to_users_edit {
+        text-decoration: none;
+        color: rgba(30, 30, 30, 1);
+        border: 1px solid rgba(30, 30, 30, 1);
+        padding: 10px 15px 10px 15px;
+        font-size: 12px;
+        width: 80%;
+    }
+    a.to_users_edit:hover {
+        text-decoration: none;
+        color: rgba(240, 240, 240, 0.8);
+        background-color: rgba(30, 30, 30, 1);
+        padding: 10px 15px 10px 15px;
+    }
+    /* ユーザー名・生息地域 */
+    aside p.user_name, p.user_area {
+        margin:10px 0 0 0;
+    }
+}
+
+
+/*************************
+**** section設定 ****
+**************************/
+
+section.section {
+    float: left;
+    width: 60%;
+    margin-left: 30px;
+}
+/* 投稿フォーム・投稿猫一覧・投稿一覧ボタンのリスト */
+ul.main_button_list {
+    text-align: right;
+}
+/* ボタンリスト全体の設定 */
+div.post_form, div.users_index, div.posts_index {
+    display: inline;
+}
+/* 投稿フォーム・投稿猫一覧・投稿一覧ボタンデザイン(+hover) */
+a.post_form_button, a.users_index_button, a.posts_index_button{
+    border: 1px solid rgba(30, 30, 30, 1);
+    border-radius: 2px;
+    padding : 10px 15px 10px 15px;
+    text-decoration: none;
+    font-size: 12px;
+    color: rgba(30, 30, 30, 1);
+}
+a.post_form_button:hover, a.users_index_button:hover, a.posts_index_button:hover {
+    border: 1px solid rgba(240, 240, 240, 1);
+    border-radius: 2px;
+    padding : 10px 15px 10px 15px;
+    color: rgba(240, 240, 240, 1);
+    background-color: rgba(30, 30, 30, 1);
+}
+/*  メイン画面の自分が投稿したポスト一覧  */
+/* コメント一欄を囲う */
+div.my_posts_index {
+    margin-top: 30px;
+}
+/* 投稿とコメントを囲う */
+div.post_comment_container {
+    border: 1px solid #7f7f7f;
+    background-color: white;
+    padding: 10px;
+    margin-top: 5px 10px 5px 10px;
+}
+/* 時間・削除アイコンのリスト */
+ul.post_container_list {
+    list-style: none;
+    text-align: right;
+    margin:0;
+}
+/* 投稿のタイトル */
+h3.post_title {
+    border-bottom: 1px solid #7F7F7F;
+    padding: 0 15px 5px 15px;
+    margin-bottom:20px;
+    font-size: 18px;
+}
+/* 投稿の内容 */
+p.post_conetnt {
+    text-align:left;
+    margin:5px 40px 5px 40px;
+}
+/* 投稿画像 */
+img.post_img {
+    width: 300px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+/*   投稿時間(new,何時間前、何年何月何日 */
+/* new */
+span.time_msg_new {
+    font-size: 18px;
+    font-weight: bold;
+    color: yellow;
+    display: inine-box;
+    text-shadow: 1px 1px 0 #000,
+                -1px 1px 0 #000,
+                1px -1px 0 #000,
+                -1px -1px 0 #000;
+    text-shadow: 1px 1px 0 #000,
+                -1px 1px 0 #000,
+                1px -1px 0 #000,
+                -1px -1px 0 #000;
+}
+/* ~時間前 */
+span.time_msg_oneday {
+    font-size: 18px;
+    font-weight: bold;
+    display: inine-box;
+}
+/*   削除のアイコン  */
+/* 削除アイコンを囲う */
+div.destroy_icon {
+    display: inline;
+    margin: 0 10px 0 20px
+}
+/* 削除アイコン(×)+hover */
+.destroy_icon span.cross {
+    border:2px solid black;
+    border-radius: 5px;
+    padding: 1px 5px 3px 5px;
+    font-size: 20px;
+    color: black;
+
+}
+.destroy_icon span.cross:hover {
+    text-decoration: none;
+    color: white;
+    background-color: black;
+}
+/* 削除アイコンのaタグ+hover */
+.destroy_icon a {
+    text-decoration: none;
+}
+.destroy_icon a:hover{
+    text-decoration: none;
+}
+/*  コメント、いいねのアイコン  */
+ul.post_icon_list {
+    list-style: none;
+    text-align: right;
+    margin-right: 20px;
+    border-top: 1px solid silver;
+    border-bottom: 1px solid silver;
+}
+/* コメントアイコン+hover */
+img.comment_icon {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+}
+img.comment_icon:hover {
+    width: 45px;
+    height: 45px;
+}
+/* いいねアイコン(他人の投稿)+hover */
+img.favorite_icon {
+    width: 45px;
+    height: 45px;
+    margin: 5px;
+    text-decoration: none;
+}
+img.favorite_icon:hover {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+}
+/* いいねアイコン(自分の投稿) */
+img.favorite_icon_my {
+    width: 45px;
+    height: 45px;
+    margin: 5px;
+}
+/* いいねカウント */
+span.favorite_count {
+    font-size: 30px;
+    display:inline-block;
+
+}
+
+/*********************  スマホ時    ***************************/
+@media(max-width: 670px) {
+
+    section.section {
+        width: 100%;
+        margin: 0 0 0 0;
+    }
+    /* 投稿フォーム・投稿猫一覧・投稿一覧ボタンのリスト */
+    ul.main_button_list {
+        text-align: center;
+        margin :0;
+        padding:0;
+    }
+    /* ボタンリスト全体の設定 */
+    div.post_form, div.users_index, div.posts_index {
+        display: block;
+        margin: 30px 0 30px 0;
+    }
+    /* 投稿フォーム・投稿猫一覧・投稿一覧ボタンデザイン(+hover) */
+    a.post_form_button, a.users_index_button, a.posts_index_button{
+        border: 1px solid rgba(30, 30, 30, 1);
+        border-radius: 2px;
+        padding : 10px 40px 10px 40px;
+        text-decoration: none;
+        font-size: 15px;
+        color: rgba(30, 30, 30, 1);
+    }
+    a.post_form_button:hover, a.users_index_button:hover, a.posts_index_button:hover {
+        border: 1px solid rgba(240, 240, 240, 1);
+        border-radius: 2px;
+        padding : 10px 40px 10px 40px;
+        color: rgba(240, 240, 240, 1);
+        background-color: rgba(30, 30, 30, 1);
+    }
+    /* 投稿一覧を囲う */
+    div.my_posts_index {
+        width: 100%;
+    }
+    /* 投稿の内容 */
+    p.post_conetnt {
+        text-align:left;
+        margin:5px 5px 5px 5px;
+    }
+    /* 投稿画像 */
+    img.post_img {
+        width: 90%;
+        border-radius: 5px;
+    }
+    /*   投稿時間(new,何時間前、何年何月何日 */
+    /* new */
+    span.time_msg_new {
+        font-size: 14px;
+        font-weight: bold;
+        color: yellow;
+        display: inline-box;
+        text-shadow: 1px 1px 0 #000,
+                    -1px 1px 0 #000,
+                    1px -1px 0 #000,
+                    -1px -1px 0 #000;
+        text-shadow: 1px 1px 0 #000,
+                    -1px 1px 0 #000,
+                    1px -1px 0 #000,
+                    -1px -1px 0 #000;
+    }
+    /* ~時間前 */
+    span.time_msg_oneday {
+        font-size: 14px;
+        font-weight: bold;
+        display: inline-box;
+    }
+    /* 時間 */
+    span.time_msg {
+        font-size: 12px;
+        display: inline-box;
+    }
+    /*   削除のアイコン  */
+    /* 削除アイコンを囲う */
+    div.destroy_icon {
+        display: inline;
+        margin: 0 5px 0 5px
+    }
+    /* 削除アイコン(×)+hover */
+    .destroy_icon span.cross {
+        border:2px solid black;
+        border-radius: 5px;
+        padding: 1px 5px 3px 5px;
+        font-size: 20px;
+        color: black;
+    }
+    .destroy_icon span.cross:hover {
+        text-decoration: none;
+        color: white;
+        background-color: black;
+    }
+}
+/********************************
+*** 投稿フォーム・コメントフォーム ***
+**********************************/
+/* 投稿フォーム */
+.post_form_container {
+    border: 2px solid #7f7f7f;
+    background-color: rgba(20, 20, 20, 0.8);
+    width: 80%;
+    display: none;
+    padding: 20px 0 20px;
+    margin: 10px auto;
+}
+/* 投稿フォーム部品 */
+.post_form_container .form_part {
+    padding: 10px 0 10px 0;
+}
+/* 投稿フォームのラベル */
+.post_form_container label {
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+}
+/* textタイプのフォーム */
+.post_form_container .form_part input[type=text] {
+    width: 200px;
+    height: 30px;
+    font-size:20px;
+}
+/* texareaタイプのフォーム */
+.post_form_container .form_part textarea{
+    width: 300px;
+    font-size:20px;
+}
+/* fileタイプのフォームのラベル+hover */
+label.image_select {
+    padding: 15px;
+    border: 1px solid black;
+    border-radius: 5px;
+    color: black;
+    background-color: rgba(156, 213, 255, 0.5);
+}
+label.image_select:hover {
+    padding: 15px;
+    border: 1px solid black;
+    border-radius: 5px;
+    color: black;
+    background-color: rgba(156, 213, 255, 0.9);
+}
+/* 投稿ボタン(submit)+hover */
+button.post_submit_button {
+    padding: 10px 25px 10px 25px;
+    font-size: 15px;
+    border: 1px solid white;
+    border-radius: 5px;
+    background-color:rgba(30, 30, 30, 0.5);
+    color: white;
+    font-weight: bold;
+
+}
+button.post_submit_button:hover {
+    border: 1px solid black;
+    background-color:rgba(240, 240, 240, 1);
+    font-weight: bold;
+    color: rgba(30, 30, 30, 1);
+
+}
+/*  コメントフォーム  */
+.comment {
+    display: none;
+}
+
+.comment_form_container {
+    padding: 20px 0 20px 0;
+}
+.comment_form_container input[type=text] {
+    width: 300px;
+    height: 30px;
+    font-size:20px;
+}
+/*********************  スマホ時    ***************************/
+@media(max-width: 670px) {
+
+    /* 投稿フォーム */
+    .post_form_container {
+        border: 2px solid #7f7f7f;
+        background-color: rgba(20, 20, 20, 0.8);
+        width: 100%;
+        display: none;
+        padding: 10px 0 10px;
+        margin: 10px auto;
+    }
+    /* textタイプのフォーム */
+    .post_form_container .form_part input[type=text] {
+        width: 90%;
+        height: 30px;
+        font-size:20px;
+    }
+    /* textareaタイプのフォーム */
+    .post_form_container .form_part textarea{
+        width: 90%;
+        height: 100px;
+        font-size:20px;
+    }
+    .comment_form_container input[type=text] {
+        width: 95%;
+        height: 30px;
+        font-size:20px;
+    }
+}
+
 /*************************
 **** ユーザー情報編集ページ ****
 **************************/
 .container_users_edit {
-	padding: 30px;
+    padding: 30px;
 }
 .container_users_edit .form_part {
     margin-bottom: 15px;
@@ -406,310 +819,10 @@ img.user_icon {
     background-color: rgba(30, 30, 30, 0.8);
 }
 
-/*************************
-******** メイン画面 **********
-**************************/
-.container_main {
-	padding-top: 50px;
-	height: 100%;
-}
-/***********************************************************
-******** 投稿フォーム・投稿猫一覧・投稿一覧ボタンのリスト **********
-***********************************************************/
-.main_button_list {
-    list-style: none;
-    text-align: right;
-}
-/**********************
-*** 投稿フォームを出すボタン ***
-************************/
-.post_form {
-    display:inline;
-}
-a.post_form_button {
-    border: 1px solid rgba(30, 30, 30, 1);
-    border-radius: 2px;
-    padding : 10px 15px 10px 15px;
-    margin-right: 10px;
-    text-decoration: none;
-    font-size: 12px;
-    color: rgba(30, 30, 30, 1);
-}
-a.post_form_button:hover {
-    border: 1px solid rgba(240, 240, 240, 1);
-    border-radius: 2px;
-    padding : 10px 15px 10px 15px;
-    color: rgba(240, 240, 240, 1);
-    background-color: rgba(30, 30, 30, 1);
-}
-/**********************
-*** 投稿フォーム ***
-************************/
-.post_form_container {
-    border: 2px solid #7f7f7f;
-    background-color: rgba(20, 20, 20, 0.8);
-    width: 80%;
-    display: none;
-    padding: 20px 0 20px;
-    margin: 10px auto;
-}
-.post_form_container .form_part {
-	padding: 10px 0 10px 0;
-}
-.post_form_container label {
-	color: white;
-	font-weight: bold;
-	font-size: 18px;
-}
-.post_form_container .form_part input[type=text] {
-    width: 200px;
-    height: 30px;
-    font-size:20px;
-}
-.post_form_container .form_part textarea{
-    width: 300px;
-    font-size:20px;
-}
-label.image_select {
-	padding: 15px;
-	border: 1px solid black;
-	border-radius: 5px;
-	color: black;
-	background-color: rgba(156, 213, 255, 0.5);
-}
-label.image_select:hover {
-    padding: 15px;
-    border: 1px solid black;
-    border-radius: 5px;
-    color: black;
-    background-color: rgba(156, 213, 255, 0.9);
-}
-/**********************
-******* 投稿ボタン(submit) *******
-************************/
-button.post_submit_button {
-    padding: 10px 25px 10px 25px;
-    font-size: 15px;
-    border: 1px solid white;
-    border-radius: 5px;
-    background-color:rgba(30, 30, 30, 0.5);
-    color: white;
-    font-weight: bold;
-
-}
-button.post_submit_button:hover {
-    border: 1px solid black;
-    background-color:rgba(240, 240, 240, 1);
-    font-weight: bold;
-    color: rgba(30, 30, 30, 1);
-
-}
-/********************************************
-******* 投稿のエラー・フラッシュメッセージ *******
-********************************************/
-.message {
-	position: relative;
-}
-.flush {
-	position: absolute;
-	    left: 0;
-        right: 0;
-    margin: auto;
-    padding: 10px 0 10px 0;
-	background-color: rgba(120, 197, 232, 0.74);
-}
-.errors_post {
-    position: absolute;
-        left: 0;
-        right: 0;
-    margin: auto;
-    padding: 10px 0 10px 0;
-    background-color: rgba(232, 120, 120, 0.74);
-}
 
 
-/********************************
-******* 登録猫一覧へのボタン *******
-*********************************/
-.users_index {
-	display:inline;
-}
-a.users_index_button {
-	border: 1px solid rgba(30, 30, 30, 1);
-    border-radius: 2px;
-	padding : 10px 15px 10px 15px;
-	text-decoration: none;
-	font-size: 12px;
-	color: rgba(30, 30, 30, 1);
-}
-a.users_index_button:hover {
-    border: 1px solid rgba(240, 240, 240, 1);
-    border-radius: 2px;
-    padding : 10px 15px 10px 15px;
-    color: rgba(240, 240, 240, 1);
-    background-color: rgba(30, 30, 30, 1);
-}
-/********************************
-******* 投稿一覧へのボタン *******
-*********************************/
-.posts_index {
-    display:inline;
-}
-a.posts_index_button {
-    border: 1px solid rgba(30, 30, 30, 1);
-    border-radius: 2px;
-    padding : 10px 15px 10px 15px;
-    font-size: 12px;
-    text-decoration: none;
-    color: rgba(30, 30, 30, 1);
-}
-a.posts_index_button:hover {
-    border: 1px solid rgba(240, 240, 240, 1);
-    border-radius: 2px;
-    padding : 10px 15px 10px 15px;
-    color: rgba(240, 240, 240, 1);
-    background-color: rgba(30, 30, 30, 1);
-}
-/*********************************************
-*****  メイン画面の自分が投稿したポスト一覧  ********
-***********************************************/
-.my_posts_index {
-	margin-top: 30px;
-}
-.post_comment_container {
-	border: 1px solid #7f7f7f;
-	background-color: white;
-	padding: 10px;
-	margin-top: 5px 10px 5px 10px;
-}
-ul.post_container_list {
-	list-style: none;
-	text-align: right;
-    margin:0;
-}
-h3.post_title {
-	border-bottom: 1px solid #7F7F7F;
-	padding: 0 15px 5px 15px;
-	margin-bottom:20px;
-	font-size: 18px;
-}
-
-p.post_conetnt {
-	text-align:left;
-	margin:5px 40px 5px 40px;
-}
-
-img.post_img {
-    width: 300px;
-    border-radius: 5px;
-    margin-top: 20px;
-}
-/**************************************
-*****   投稿時間(new,何時間前、何年何月何日 ********
-**************************************/
-span.time_msg_new {
-	font-size: 18px;
-	font-weight: bold;
-	color: yellow;
-	display: inine-box;
-	text-shadow: 1px 1px 0 #000,
-                -1px 1px 0 #000,
-                1px -1px 0 #000,
-                -1px -1px 0 #000;
-    text-shadow: 1px 1px 0 #000,
-                -1px 1px 0 #000,
-                1px -1px 0 #000,
-                -1px -1px 0 #000;
-}
-
-span.time_msg_oneday {
-	font-size: 18px;
-    font-weight: bold;
-    display: inine-box;
-}
 
 
-/**************************************
-*****   削除のアイコン  ********
-**************************************/
-.destroy_icon {
-	display: inline;
-	margin: 0 10px 0 20px
-}
-.destroy_icon span.cross {
-    border:2px solid black;
-    border-radius: 5px;
-    padding: 1px 5px 3px 5px;
-    font-size: 20px;
-    color: black;
-
-}
-.destroy_icon span.cross:hover {
-    text-decoration: none;
-    color: white;
-    background-color: black;
-}
-.destroy_icon a {
-	text-decoration: none;
-}
-/**************************************
-*****  コメント、いいねのアイコン  ********
-**************************************/
-
-ul.post_icon_list {
-	list-style: none;
-	text-align: right;
-	margin-right: 20px;
-	border-top: 1px solid silver;
-	border-bottom: 1px solid silver;
-}
-img.comment_icon {
-    width: 40px;
-    height: 40px;
-    margin: 5px;
-}
-img.comment_icon:hover {
-    width: 45px;
-    height: 45px;
-}
-img.favorite_icon {
-    width: 45px;
-    height: 45px;
-    margin: 5px;
-    text-decoration: none;
-}
-img.favorite_icon:hover {
-    width: 50px;
-    height: 50px;
-    margin: 5px;
-}
-img.favorite_icon_my {
-    width: 45px;
-    height: 45px;
-    margin: 5px;
-}
-span.favorite_count {
-	font-size: 30px;
-	display:inline-block;
-
-}
-/*************************
-*****  コメントフォーム  ********
-*************************/
-.comment {
-    display: none;
-}
-.comment_container {
-}
-
-.comment_form_container {
-    padding: 20px 0 20px 0;
-}
-.comment_form_container input[type=text] {
-    width: 300px;
-    height: 30px;
-    font-size:20px;
-}
 
 /**********************
 *****  ユーザー一覧  ********
@@ -828,3 +941,25 @@ td.post_index_comment_body {
 	padding-left: 15px;
 }
 
+/********************************************
+******* 投稿のエラー・フラッシュメッセージ *******
+********************************************/
+.message {
+    position: relative;
+}
+.flush {
+    position: absolute;
+        left: 0;
+        right: 0;
+    margin: auto;
+    padding: 10px 0 10px 0;
+    background-color: rgba(120, 197, 232, 0.74);
+}
+.errors_post {
+    position: absolute;
+        left: 0;
+        right: 0;
+    margin: auto;
+    padding: 10px 0 10px 0;
+    background-color: rgba(232, 120, 120, 0.74);
+}
