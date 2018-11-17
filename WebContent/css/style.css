@@ -1050,18 +1050,25 @@ img.post_user_icon {
     object-fit: cover;
     border-radius: 15px;
 }
+/* 投稿タイトルと投稿内容と投稿画像 */
+ul.post_index_title_content_img {
+    padding:0;
+    margin:0;
+    width: 100%;
+}
 /* 投稿タイトルと投稿内容 */
 div.post_index_title_content {
 	width:50%;
-	margin-right: 0px;
+	margin:0;
 	display: inline-box;
 	float: left;
+	border: 1px solid red;
 }
 /* 投稿タイトル */
 p.post_index_title {
     border-bottom: 1px solid #cccccc;
     padding: 10px 0 10px 0;
-    margin: 0 15px 0 15px;
+    margin: 0 5px 0 5px;
 }
 /* 投稿内容 */
 p.post_index_conetnt {
@@ -1072,7 +1079,7 @@ p.post_index_conetnt {
 /* 投稿画像 */
 img.post_index_img {
 	border-radius: 15px;
-	width: 50%;
+	width: 45%;
 	max-height: 200px;
 	object-fit: cover;
 }

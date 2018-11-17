@@ -84,7 +84,7 @@
                                         </a>
                                     </div>
                                     <%-- 投稿リスト --%>
-                                    <ul class="clearfix">
+                                    <ul class="clearfix post_index_title_content_img">
                                         <li>
                                             <%-- 投稿タイトルと内容を囲む --%>
                                             <div class="post_index_title_content">
