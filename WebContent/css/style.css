@@ -819,7 +819,28 @@ button.post_submit_button:hover {
     background-color: rgba(30, 30, 30, 0.8);
 }
 
+/*********************  スマホ時    ***************************/
+@media(max-width: 670px) {
 
+    .container_users_edit .form_part {
+        margin: 0 0 10px 0;
+    }
+    .container_users_edit .form_part input[type=text] {
+        width: 200px;
+        height: 20px;
+        font-size:20px;
+    }
+    .container_users_edit .form_part input[type=email] {
+        width: 200px;
+        height: 20px;
+        font-size:20px;
+    }
+    .container_users_edit .form_part input[type=password] {
+        width: 200px;
+        height: 20px;
+        font-size:20px;
+    }
+}
 
 
 
