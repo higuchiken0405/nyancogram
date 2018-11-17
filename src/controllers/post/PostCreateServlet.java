@@ -21,7 +21,8 @@ import models.validators.PostValidator;
 import utils.DBUtil;
 
 @WebServlet("/posts/create")
-@MultipartConfig()
+//@MultipartConfig(maxRequestSize=5242880, maxFileSize=5242880)
+@MultipartConfig(maxRequestSize=1242880, maxFileSize=1242880)
 public class PostCreateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
