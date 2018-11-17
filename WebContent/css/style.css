@@ -6,6 +6,7 @@
 html {
 	height: 100%
 }
+
 body {
 	height: 100%;
 	background-image: url("../images/toppage.png");
@@ -16,22 +17,32 @@ body {
 	height: 100%;
     text-align: center;
 }
-.content {
+div.content {
     height: 100%;
 }
-.container {
+div.container {
     width: 80%;
     height: 100%;
     margin: 0 auto;
     background-color: rgba(240, 240, 240, 0.9);
     overflow: auto;
-
 }
-.container_top {
-    width: 80%;
-    height: 100%;
-    margin: 0 auto;
-    overflow: auto;
+/* リストの点を非表示 */
+li {
+	list-style: none;
+}
+
+/****************　スマホ時　****************************/
+
+@media(max-width: 670px) {
+    div#wrapper {
+        height: 100%;
+        width: 100%;
+    }
+    div.content {
+        height: 100%;
+        width: 100%;
+    }
 }
 /*************************
 ******** ヘッダー **********
@@ -64,6 +75,109 @@ header span.logout {
 	float: right;
 	margin: 1% 15% 0 0;
 	font-size: 140%;
+}
+
+/**************************************************
+******** トップ画面(ログイン・サインアップへの画面) **********
+*****************************************************/
+div.container_top {
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+    overflow: auto;
+}
+/* Welcome to Nyancogram */
+h2.toppage {
+    padding-top: 100px;
+    color: white;
+    font-size: 40px;
+}
+/* This is an application for the cat . */
+p.toppagemsg {
+       color: white;
+    font-size: 20px;
+}
+
+/* ログインボタンとサインアップボタンを囲うdiv */
+div.index_button {
+    padding-top:50px;
+    text-align:center;
+}
+/* ログインボタン、サインアップボタンを囲うdiv */
+div.login_button, .signup_button {
+    display: inline-flex;
+}
+/* ログインボタン、サインアップボタンのデザイン(+hover時のデザイン) */
+.toppage_button {
+    border: 2px solid white;
+    padding: 10px 40px 10px 40px;
+    margin: 0 100px 0 100px;
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0);
+    text-decoration: none;
+}
+.toppage_button:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+    font-weight: bold;
+    border: 2px solid white;
+    padding: 11px 41px 11px 41px;
+}
+/*********************  スマホ時    ***************************/
+@media(max-width: 670px) {
+
+    div.container_top {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    overflow: auto;
+    }
+    /* Welcome to Nyancogram */
+    h2.toppage {
+    padding-top: 100px;
+    color: white;
+    font-size: 20px;
+    }
+    /* This is an application for the cat . */
+    p.toppagemsg {
+    color: white;
+    font-size: 15px;
+    }
+    /* ログインボタンとサインアップボタンを囲うdiv */
+    div.index_button {
+        padding-top:15px;
+        text-align:center;
+    }
+    /* 通常画面でボタンを横並びにする時にリストを使用している */
+    ul.index_button_list {
+        padding: 0px;
+    }
+    /* ログインボタン、サインアップボタンを囲うdiv */
+    div.login_button, .signup_button {
+        display: block;
+        margin: 0 auto 50px auto;
+    }
+    /* ログインボタン、サインアップボタンのデザイン(+hover時のデザイン) */
+    a.toppage_button {
+        border: 2px solid white;
+        padding: 10px 40px 10px 40px;
+        margin: 0;
+        font-size: 20px;
+        color: white;
+        font-weight: bold;
+        background-color: rgba(0, 0, 0, 0);
+        text-decoration: none;
+    }
+    a.toppage_button:hover {
+        background-color: rgba(0, 0, 0, 0.3);
+        color: white;
+        font-weight: bold;
+        border: 2px solid white;
+        padding: 11px 41px 11px 41px;
+    }
+
 }
 /*******************************
 **** ログイン・サインアップ設定 ****
@@ -220,48 +334,7 @@ img.user_icon {
     color: rgba(220, 220, 200, 1);
     background-color: rgba(30, 30, 30, 0.8);
 }
-/*************************
-**** トップページ設定 ****
-**************************/
-h2.toppage {
-    padding-top: 100px;
-    color: white;
-    font-size: 40px;
-}
-p.toppagemsg {
-       color: white;
-    font-size: 20px;
-}
 
-.index_button {
-    padding-top:50px;
-    text-align:center;
-}
-.index_button li {
-	list-style-type: none;
-}
-
-.login_button, .signup_button {
-    display: inline-flex;
-}
-
-.toppage_button {
-    border: 2px solid white;
-    padding: 10px 40px 10px 40px;
-    margin: 0 100px 0 100px;
-    font-size: 20px;
-    color: white;
-    font-weight: bold;
-    background-color: rgba(0, 0, 0, 0);
-    text-decoration: none;
-}
-.toppage_button:hover {
-    background-color: rgba(0, 0, 0, 0.3);
-    color: white;
-    font-weight: bold;
-    border: 2px solid white;
-    padding: 11px 41px 11px 41px;
-}
 /*************************
 ******** メイン画面 **********
 **************************/
