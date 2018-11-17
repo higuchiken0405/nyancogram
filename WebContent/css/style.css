@@ -846,13 +846,15 @@ button.post_submit_button:hover {
 
 
 /**********************
-*****  ユーザー一覧  ********
+*****  ユーザー一覧・投稿一覧・コメント一覧  ********
 **************************/
-.container_users_index {
+/* ユーザー一覧 */
+/* ユーザー一覧を囲む */
+div.container_users_index {
     padding-top: 50px;
     height: 100%;
 }
-
+/* ユーザー一覧のリストの一つ+hover */
 .container_users_index ul.user_index_list li {
 	list-style-type: none;
 	text-align: left;
@@ -863,34 +865,65 @@ button.post_submit_button:hover {
 .container_users_index ul.user_index_list li:hover {
     border-bottom: 1px solid #656565;
 }
+/* ユーザーアイコン */
 img.users_index_icon {
     border-radius: 10px;
 	width: 40px;
     height: 40px;
     object-fit: cover;
 }
-
+/* ユーザー情報 */
 span.users_index {
 	margin-left: 10px;
 }
+/* ユーザー情報ページへのリンク */
 a.users_idex_link {
     text-decoration: none;
     color: rgba(30, 30, 30, 1);
     display: block;
 }
+/* 男 */
 span.gender_male {
 	color: #0065cb;
 	font-weight: bold;
     font-size: 120%;
 }
+/* 女 */
 span.gender_female {
 	color: #ff007f;
 	font-weight: bold;
 	font-size: 120%;
 }
-/**********************
-*****  投稿一覧  ********
-**************************/
+/*********************  スマホ時    ***************************/
+@media(max-width: 670px) {
+    /* ユーザー一覧 */
+    /* ユーザー一覧を囲む */
+    div.container_users_index {
+        height: 100%;
+        width: 100%;
+    }
+    /* ユーザー一覧のリスト */
+    .container_users_index ul {
+        padding: 0;
+    }
+    /* ユーザー一覧のリストの一つ+hover */
+    .container_users_index ul.user_index_list li {
+        list-style-type: none;
+        text-align: left;
+        margin-left: 10px;
+        margin-top: 10px;
+        border-bottom: 1px solid #cccccc;
+    }
+    /* 生息地域 */
+    span.users_index_area {
+        display: block;
+        font-size: 14px;
+        padding-left: 60px;
+    }
+
+}
+
+/* 投稿一覧  */
 .post_index_container {
 
 }
