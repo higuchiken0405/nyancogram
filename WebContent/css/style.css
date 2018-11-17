@@ -351,15 +351,34 @@ a.to_users_edit {
     text-decoration: none;
     color: rgba(30, 30, 30, 1);
     border: 1px solid rgba(30, 30, 30, 1);
-    padding: 10px 15px 10px 15px;
-    font-size: 12px;
+    padding: 10px 20px 10px 20px;
+    font-size: 16px;
     width: 80%;
 }
 a.to_users_edit:hover {
     text-decoration: none;
     color: rgba(240, 240, 240, 0.8);
     background-color: rgba(30, 30, 30, 1);
-    padding: 10px 15px 10px 15px;
+    padding: 10px 20px 10px 20px;
+}
+/************ 幅ちょっと狭い *******************/
+@media(max-width: 1080px) {
+
+	/* ユーザー情報編集画面へのリンク(+hover) */
+    a.to_users_edit {
+        text-decoration: none;
+        color: rgba(30, 30, 30, 1);
+        border: 1px solid rgba(30, 30, 30, 1);
+        padding: 10px 10px 10px 10px;
+        font-size: 10px;
+}
+a.to_users_edit:hover {
+        text-decoration: none;
+        color: rgba(240, 240, 240, 0.8);
+        background-color: rgba(30, 30, 30, 1);
+        padding: 10px 10px 10px 10px;
+    }
+
 }
 /*********************  スマホ時    ***************************/
 @media(max-width: 670px) {
@@ -384,7 +403,7 @@ a.to_users_edit:hover {
         color: rgba(30, 30, 30, 1);
         border: 1px solid rgba(30, 30, 30, 1);
         padding: 10px 15px 10px 15px;
-        font-size: 12px;
+        font-size: 14px;
         width: 80%;
     }
     a.to_users_edit:hover {
@@ -398,7 +417,6 @@ a.to_users_edit:hover {
         margin:10px 0 0 0;
     }
 }
-
 
 /*************************
 **** section設定 ****
@@ -421,15 +439,15 @@ div.post_form, div.users_index, div.posts_index {
 a.post_form_button, a.users_index_button, a.posts_index_button{
     border: 1px solid rgba(30, 30, 30, 1);
     border-radius: 2px;
-    padding : 10px 15px 10px 15px;
+    padding : 15px 25px 15px 25px;
     text-decoration: none;
-    font-size: 12px;
+    font-size: 20px;
     color: rgba(30, 30, 30, 1);
 }
 a.post_form_button:hover, a.users_index_button:hover, a.posts_index_button:hover {
     border: 1px solid rgba(240, 240, 240, 1);
     border-radius: 2px;
-    padding : 10px 15px 10px 15px;
+    padding : 15px 25px 15px 25px;
     color: rgba(240, 240, 240, 1);
     background-color: rgba(30, 30, 30, 1);
 }
@@ -560,7 +578,29 @@ span.favorite_count {
     display:inline-block;
 
 }
-
+/************ 幅ちょっと狭い *******************/
+@media(max-width: 1080px) {
+	/* ボタンリスト全体の設定 */
+    div.post_form, div.users_index, div.posts_index {
+        display: inline;
+    }
+    /* 投稿フォーム・投稿猫一覧・投稿一覧ボタンデザイン(+hover) */
+    a.post_form_button, a.users_index_button, a.posts_index_button{
+        border: 1px solid rgba(30, 30, 30, 1);
+        border-radius: 2px;
+        padding : 10px 10px 10px 10px;
+        text-decoration: none;
+        font-size: 13px;
+        color: rgba(30, 30, 30, 1);
+    }
+    a.post_form_button:hover, a.users_index_button:hover, a.posts_index_button:hover {
+        border: 1px solid rgba(240, 240, 240, 1);
+        border-radius: 2px;
+        padding : 10px 10px 10px 10px;
+        color: rgba(240, 240, 240, 1);
+        background-color: rgba(30, 30, 30, 1);
+    }
+}
 /*********************  スマホ時    ***************************/
 @media(max-width: 670px) {
 
@@ -841,14 +881,9 @@ button.post_submit_button:hover {
         font-size:20px;
     }
 }
-
-
-
-
 /**********************
-*****  ユーザー一覧・投稿一覧・コメント一覧  ********
+*****  ユーザー一覧  ********
 **************************/
-/* ユーザー一覧 */
 /* ユーザー一覧を囲む */
 div.container_users_index {
     padding-top: 50px;
@@ -894,6 +929,35 @@ span.gender_female {
 	font-weight: bold;
 	font-size: 120%;
 }
+/* コメント一覧 */
+/* コメント一覧のリスト */
+ul.comment_list {
+    list-style: none;
+    text-align: left;
+}
+/* コメントユーザーのアイコン */
+img.comment_user_icon {
+    width: 40xp;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+/* コメントユーザー名+hover */
+a.post_index_comment_user {
+    text-decoration: none;
+    color: rgba(30, 30, 30, 1);
+    margin-right: 20px;
+}
+a.post_index_comment_user:hover {
+    text-decoration: underline;
+    color: blue;
+    font-weight: bold;
+}
+/* コメントの内容 */
+td.post_index_comment_body {
+    text-align: left;
+    padding-left: 15px;
+}
 /*********************  スマホ時    ***************************/
 @media(max-width: 670px) {
     /* ユーザー一覧 */
@@ -922,79 +986,79 @@ span.gender_female {
     }
 
 }
-
-/* 投稿一覧  */
+/*****************************************
+****************** 投稿一覧  ***************
+********************************************/
 .post_index_container {
 
 }
-.post_index_container ul {
+/* 投稿リスト */
+ul.post_container_list {
     list-style: none;
 }
-.post_index_container ul.post_index_user_time {
-	text-align:left;
+
+/* 投稿ユーザーの詳細ページリンク+hover */
+a.post_index_user_link {
+    text-decoration: none;
+    color: rgba(30, 30, 30, 1);
+    display: block;
+    width: 70%;
 }
-.post_index_container a {
-	text-decoration: none;
-	color: rgba(30, 30, 30, 1);
+a.post_index_user_link:hover {
+    color: blue;
+    font-weight: bold;
+    text-decoration: underline;
 }
-.post_index_container a:hover {
-	color: blue;
-	font-weight: bold;
-	text-decoration: underline;
+/* 投稿ユーザー */
+span.post_index_user {
+    margin-right: 200px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #cccccc;
 }
-.post_index_user {
-	padding-bottom: 5px;
-	border-bottom: 1px solid #cccccc;
-}
+/* 投稿ユーザーアイコン */
 img.post_user_icon {
     width: 40px;
     height: 40px;
     object-fit: cover;
     border-radius: 15px;
 }
-span.post_index_user {
-    margin-right: 200px;
-}
-.post_index_title_content {
-	width:350px;
+/* 投稿タイトルと投稿内容 */
+div.post_index_title_content {
+	width:50%;
 	margin-right: 0px;
 	display: inline-box;
 	float: left;
 }
+/* 投稿タイトル */
+p.post_index_title {
+    border-bottom: 1px solid #cccccc;
+    padding: 10px 0 10px 0;
+    margin: 0 15px 0 15px;
+}
+/* 投稿内容 */
+p.post_index_conetnt {
+    margin: 10px 0 10px 0;
+    text-align:left;
+}
+
+/* 投稿画像 */
 img.post_index_img {
 	border-radius: 15px;
-	width: 200px;
+	width: 50%;
 	max-height: 200px;
 	object-fit: cover;
 }
-/*************************
-****** コメント一覧 ***********
-**************************/
-ul.comment_list {
-	list-style: none;
-	text-align: left;
+/* いいねアイコンのリンクデザイン */
+a.favorite_link {
+    text-decoration: none;
+    color: rgba(30, 30, 30, 1);
 }
-img.comment_user_icon {
-	width: 40xp;
-	height: 40px;
-	object-fit: cover;
-	border-radius: 10px;
-}
-a.post_index_comment_user {
-	text-decoration: none;
-	color: rgba(30, 30, 30, 1);
-    margin-right: 20px;
-}
-a.post_index_comment_user:hover {
-    text-decoration: underline;
-    color: blue;
-    font-weight: bold;
-}
-td.post_index_comment_body {
-	text-align: left;
-	padding-left: 15px;
-}
+/*********************  スマホ時    ***************************/
+@media(max-width: 670px) {
 
+
+
+}
 /********************************************
 ******* 投稿のエラー・フラッシュメッセージ *******
 ********************************************/
